@@ -23,32 +23,11 @@ Matoušek, J., Gärtner, B., 2007. Understanding and Using Linear Programming. S
 - [Nocedal, J., Wright, S. J., 2006. Numerical Optimization, 2nd ed. Springer-Verlag, NY.](https://link.springer.com/book/10.1007/978-0-387-40065-5)
 -->
 
-<!--
-## 評分標準
-
-學期總成績基本分為 75 分，可選擇執行以下項目加分：
-
-- 習題（理論）a 次，每次滿分 v 分，得分 v_0 分
-- 習題（程式）b 次，每次滿分 w 分，得分 w_0 分
-- 考試（紙筆）c 次，每次滿分 x 分，得分 x_0 分
-- 考試（程式）d 次，每次滿分 y 分，得分 y_0 分
-- 報告（書面 + 上台）e 次，每次滿分 z 分，得分 z_0 分
-
-其中 a, b, c, d, e 為非負整數，v, w, x, y, z，a + b + c + d + e 為正整數，a * v + b * w + c * x + d * y + e * z = 20。 + a * v + b * w + c * x + d * y + e * z，超出 99 分以 99 分計。 
-
-### 說明
-
-- 習題：理論題或程式題。習題繳交後會公佈答案並完整檢討。
-- 考試：紙筆作答考試或程式考試。紙筆作答考試內容為理論題，上課時間閉書考試；程式考試必須在 48 小時內完成指定題目並寄回 Jupyter Notebook 檔案之答案。
-- 報告：事先選定主題之書面報告，佐以上台投影片演示 15 分鐘及提問回答。
-  - 書面報告（與投影片）**禁止**使用 Word 與 PowerPoint 製作，必須使用課堂上講授之 LaTeX 語法配合製作 LaTeX / Jupyter Notebook / R Markdown 等開源格式文件。 
--->
-
 ## 授課時程
 
 | 上課時間        | 課程進度                                        |
 |-----------------|-------------------------------------------------|
-| 09/12           | Orientation & Placement Test; Introduction      |
+| 09/12           | Orientation & Introduction; Placement Test      |
 | 09/19           |                                                 |
 | 09/26           |                                                 |
 | 10/03           |                                                 | 
@@ -78,11 +57,11 @@ Matoušek, J., Gärtner, B., 2007. Understanding and Using Linear Programming. S
 | 11/02           | boyd 4, 5; cvxpy; hw2 due                           |
 | 11/09           | kochenderfer 9; svm; cvxpy                          |
 | 11/16           | matousek 2; vanderbei 2                             |
-| 11/23           | matousek 3; vanderbei 3; hw3-1 due                  |
-| 11/30           | hw3-2 due                                           |
+| 11/23           | matousek 3; vanderbei 3; hw3 due                    |
+| 11/30           | hw4 due                                             |
 | 12/07           |                                                     |
-| 12/14           | hw4-1 due                                           |
-| 12/21           | hw4-2 due                                           |
+| 12/14           | hw5 due                                             |
+| 12/21           | hw6 due                                             |
 
 -->
 
