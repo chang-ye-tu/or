@@ -18,30 +18,30 @@ Matoušek, J., Gärtner, B., 2007. Understanding and Using Linear Programming. S
 - [Kochenderfer, M. J., Wheeler, T. A., Wray, K. H., 2022. Algorithms for Decision Making. MIT Press, Cambridge, MA.](https://algorithmsbook.com/files/dm.pdf) 
 - [Boyd, S., Vandenberghe, L., 2004. Convex Optimization. Cambridge University Press, Cambridge.](https://web.stanford.edu/~boyd/cvxbook/bv_cvxbook.pdf)
 - [Vanderbei, R. J., 2020. Linear Programming: Foundations and Extensions, 5th ed. Springer Nature, Cham.](https://link.springer.com/book/10.1007/978-3-030-39415-8)
-- [Matoušek, J., Gärtner, B., 2007. Understanding and Using Linear Programming. Springer-Verlag, Berlin.](https://link.springer.com/book/10.1007/978-3-540-30717-4)
+- [Matoušek, J., Gärtner, B., 2007. Understanding and Using Linear Programming. Springer-Verlag, Berlin.]( https://link.springer.com/book/10.1007/978-3-540-30717-4 )
 - Watt, J., Borhani, R., Katsaggelos, A. K., 2020. Machine Learning Refined: Foundations, Algorithms, and Applications, 2nd ed. Cambridge University Press, Cambridge.  
 - [Nocedal, J., Wright, S. J., 2006. Numerical Optimization, 2nd ed. Springer-Verlag, NY.](https://link.springer.com/book/10.1007/978-0-387-40065-5)
 -->
 
 ## 授課時程
 
-| 上課時間        | 課程進度                                        |
-|-----------------|-------------------------------------------------|
-| 09/12           | Orientation & Introduction; Placement Test      |
-| 09/19           |                                                 |
-| 09/26           |                                                 |
-| 10/03           |                                                 | 
-| 10/17           |                                                 |
-| 10/24           |                                                 |
-| 10/31           |                                                 |
-| 11/07 期中考週  |                                                 |
-| 11/14           |                                                 |
-| 11/21           |                                                 |
-| 11/28           |                                                 |
-| 12/05           |                                                 |
-| 12/12           |                                                 |
-| 12/19           |                                                 |
-| 12/26           |                                                 |
+| 上課時間        | 課程進度                                                             |
+|-----------------|----------------------------------------------------------------------|
+| 09/12           | Orientation & Introduction; Placement Test                           |
+| 09/19           | Jupyter Notebook: Markdown & LaTeX                                   |
+| 09/26           |                                                        		 |
+| 10/03           |                                                        		 | 
+| 10/17           |                                                        		 |
+| 10/24           |                                                        		 |
+| 10/31           |                                                        		 |
+| 11/07 期中考週  |                                                        		 |
+| 11/14           |                                                        		 |
+| 11/21           |                                                        		 |
+| 11/28           |                                                        		 |
+| 12/05           |                                                        		 |
+| 12/12           |                                                        		 |
+| 12/19           |                                                        		 |
+| 12/26           |                                                        		 |
 
 <!--
 
