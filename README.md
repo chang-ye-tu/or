@@ -13,6 +13,7 @@
 <!--
 Matoušek, J., Gärtner, B., 2007. Understanding and Using Linear Programming. Springer-Verlag, Berlin.
 
+- [Nesterov, Y., 2019. Lectures on Convex Optimization, 2nd ed. Springer Nature, Cham.](https://link.springer.com/book/10.1007/978-3-319-91578-4)
 - [Bertsekas, D. P., 2012. Dynamic Programming and Optimal Control (2 Volumes), 4th ed. Athena Scientific.](http://www.athenasc.com/dpbook.html)
 - [Kochenderfer, M. J., Wheeler, T. A., 2019. Algorithms for Optimization. MIT Press, Cambridge, MA.](https://algorithmsbook.com/optimization/files/optimization.pdf)
 - [Kochenderfer, M. J., Wheeler, T. A., Wray, K. H., 2022. Algorithms for Decision Making. MIT Press, Cambridge, MA.](https://algorithmsbook.com/files/dm.pdf) 
@@ -25,23 +26,23 @@ Matoušek, J., Gärtner, B., 2007. Understanding and Using Linear Programming. S
 
 ## 授課時程
 
-| 上課時間        | 課程進度                                                             |
-|-----------------|----------------------------------------------------------------------|
-| 09/12           | Orientation & Introduction; Placement Test                           |
-| 09/19           | Jupyter Notebook: Markdown & LaTeX                                   |
-| 09/26           |                                                        		 |
-| 10/03           |                                                        		 | 
-| 10/17           |                                                        		 |
-| 10/24           |                                                        		 |
-| 10/31           |                                                        		 |
-| 11/07 期中考週  |                                                        		 |
-| 11/14           |                                                        		 |
-| 11/21           |                                                        		 |
-| 11/28           |                                                        		 |
-| 12/05           |                                                        		 |
-| 12/12           |                                                        		 |
-| 12/19           |                                                        		 |
-| 12/26           |                                                        		 |
+| 上課時間        | 課程進度                                                             			|
+|-----------------|---------------------------------------------------------------------------------------------|
+| 09/12           | Orientation & Introduction; Placement Test                           			|
+| 09/19           | Jupyter Notebook: Markdown & LaTeX                                   			|
+| 09/26           | Optimization & Python Refresher	                   		 			|
+| 10/03           | Automatic Differentiation; Convex Sets; Python; Declare HW-P1, HW-T1			|	 
+| 10/17           | Convex Functions; Python; HW-P1, HW-T1 Due; Declare HW-P2, HW-T2                   		|
+| 10/24           | Convex Optimization Problems; CVXPY                       		 			|
+| 10/31           | Duality; CVXPY; HW-P2, HW-T2 Due; Declare HW-P3, HW-T3    		 			|
+| 11/07 期中考週  |                                                        		 			|
+| 11/14           | ; HW-P3, HW-T3 Due; Declare HW-P4, HW-T4                   		 			|
+| 11/21           |                   	                                 		 			|
+| 11/28           | ; HW-P4, HW-T4 Due; Declare HW-P5, HW-T5                   		 			|
+| 12/05           |                                                        		 			|
+| 12/12           | ; HW-P5, HW-T5 Due; Declare HW-P6                         		 			|
+| 12/19           |                                                        		 			|
+| 12/26           | ; HW-P6 Due                                                		 			|
 
 <!--
 
