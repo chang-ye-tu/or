@@ -31,18 +31,18 @@ Matoušek, J., Gärtner, B., 2007. Understanding and Using Linear Programming. S
 | 09/12           | Orientation & Introduction; Placement Test                           			|
 | 09/19           | Jupyter Notebook: Markdown & LaTeX                                   			|
 | 09/26           | Optimization & Python Refresher 			                 			|
-| 10/03           | Automatic Differentiation; Convex Sets; Python; Declare hwp1, hwt1     			|	 
-| 10/17           | Convex Functions; Python; hwp1 Due; Declare hwp2			               		|
-| 10/24           | Convex Optimization Problems; CVXPY; hwt1 Due; Declare hwt2		 			|
-| 10/31           | Duality; CVXPY; hwp2 Due; Declare hwp3 		   		 			|
-| 11/07 期中考週  | Support Vector Machine; hwt2 Due; Declare hwt3            		 			|
-| 11/14           | Neural Networks; hwp3 Due; Declare hwp4 	              		 			|
-| 11/21           | Simplex Methods; hwt3 Due; Declare hwt4                              			|
-| 11/28           | hwp4 Due; Declare hwp5 		                  		 			|
-| 12/05           | hwt4 Due; Declare hwt5                                  		 			|
-| 12/12           | hwp5 Due; Declare hwp6                         			 			|
-| 12/19           | hwt5 Due                                                 		 			|
-| 12/26           | hwp6 Due                                                		 			|
+| 10/03           | Automatic Differentiation; Convex Sets; Python; Declare exp1, ext1     			|	 
+| 10/17           | Convex Functions; Python; exp1 Due; Declare exp2			               		|
+| 10/24           | Convex Optimization Problems; CVXPY; ext1 Due; Declare ext2		 			|
+| 10/31           | Duality; CVXPY; exp2 Due; Declare exp3 		   		 			|
+| 11/07 期中考週  | Support Vector Machine; ext2 Due; Declare ext3            		 			|
+| 11/14           | Neural Networks; exp3 Due; Declare exp4 	              		 			|
+| 11/21           | Simplex Methods; ext3 Due; Declare ext4                              			|
+| 11/28           | exp4 Due; Declare exp5 		                  		 			|
+| 12/05           | ext4 Due; Declare ext5                                  		 			|
+| 12/12           | exp5 Due; Declare exp6                         			 			|
+| 12/19           | ext5 Due                                                 		 			|
+| 12/26           | exp6 Due                                                		 			|
 
 <!--
 
