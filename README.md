@@ -30,8 +30,8 @@ Watt, J., Borhani, R., Katsaggelos, A. K., 2020. Machine Learning Refined: Found
 | 09/12           | Orientation & Introduction; Placement Test                           			|
 | 09/19           | Jupyter Notebook: Markdown & LaTeX                                   			|
 | 09/26           | Optimization & Python Refresher 			                 			|
-| 10/03           | Automatic Differentiation; Convex Sets; Python; Declare exp1         			|	 
-| 10/17           | Convex Functions; Python; exp1 Due					              		|
+| 10/03           | Automatic Differentiation; Python; Declare exp1                      			|	 
+| 10/17           | Convex Sets & Functions; NumPy; exp1 Due				              		|
 | 10/24           | Convex Optimization Problems; CVXPY; Declare exp2						|
 | 10/31           | Duality; CVXPY; Declare exp3		 			 			|
 | 11/07 期中考週  | Support Vector Machine; exp2 Due; Declare ext1           		 			|
