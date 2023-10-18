@@ -36,8 +36,7 @@ Watt, J., Borhani, R., Katsaggelos, A. K., 2020. Machine Learning Refined: Found
 | 10/31           | Convex OPtimization Problems II; Duality I; CVXPY; Declare exp3		 		|
 | 11/07 期中考週  | Duality II; Support Vector Machine; exp2 Due; Declare ext1           		 	|
 | 11/14           | Neural Networks I; exp3 Due; Declare exp4 	              		 			|
-| 11/21           | Neural Networks II; ext1 Due; Declare ext2 
-       		|
+| 11/21           | Neural Networks II; ext1 Due; Declare ext2 							|
 | 11/28           | Linear Programming: Simplex Methods; exp4 Due; Declare exp5  	 			|
 | 12/05           | Linear Programming: Applications I; ext2 Due; Declare ext3 	 				|
 | 12/12           | Linear Programming: Applications II; exp5 Due; Declare exp6    			 	|
