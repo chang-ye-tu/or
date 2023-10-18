@@ -31,10 +31,10 @@ Watt, J., Borhani, R., Katsaggelos, A. K., 2020. Machine Learning Refined: Found
 | 09/19           | Jupyter Notebook: Markdown & LaTeX                                   			|
 | 09/26           | Optimization & Python Refresher 			                 			|
 | 10/03           | Automatic Differentiation; Python; Declare exp1                      			|	 
-| 10/17           | Convex Sets & Functions; exp1 Due				              		|
-| 10/24           | Convex Optimization Problems; CVXPY; Declare exp2						|
-| 10/31           | Duality; CVXPY; Declare exp3		 			 			|
-| 11/07 期中考週  | Support Vector Machine; exp2 Due; Declare ext1           		 			|
+| 10/17           | Convex Sets & Functions; exp1 Due				              		        |
+| 10/24           | Convex Optimization Problems I; CVXPY; Declare exp2						|
+| 10/31           | Convex OPtimization Problems II; Duality I; CVXPY; Declare exp3		 		|
+| 11/07 期中考週  | Duality II; Support Vector Machine; exp2 Due; Declare ext1           		 	|
 | 11/14           | Neural Networks; exp3 Due; Declare exp4 	              		 			|
 | 11/21           | Linear Programming: Simplex Methods; ext1 Due; Declare ext2                			|
 | 11/28           | Linear Programming: Applications I; exp4 Due; Declare exp5  	 			|
