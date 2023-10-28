@@ -1,8 +1,9 @@
 # 作業研究
 
-## 教科書
+## 上課教材
 
-教師編纂講義：內容為以下參考書選輯與其他補充。
+<a href="https://github.com/chang-ye-tu/or/blob/master/note/note00.pdf">00</a>&nbsp; | &nbsp;<a href="https://github.com/chang-ye-tu/or/blob/master/note/note01.pdf">01</a>&nbsp; | &nbsp;<a href="https://github.com/chang-ye-tu/or/blob/master/note/note02.pdf">02</a>&nbsp; | &nbsp;<a href="https://github.com/chang-ye-tu/or/blob/master/note/note03.pdf">03</a>&nbsp; | &nbsp;<a href="https://github.com/chang-ye-tu/or/blob/master/note/note04.pdf">04</a>&nbsp; | &nbsp;<a href="https://github.com/chang-ye-tu/or/blob/master/note/note05.pdf">05</a>&nbsp; | &nbsp;<a href="https://github.com/chang-ye-tu/or/blob/master/note/note06.pdf">06</a>&nbsp; | &nbsp;<a href="https://github.com/chang-ye-tu/or/blob/master/note/note01.pdf">07</a>&nbsp; | &nbsp;<a href="https://github.com/chang-ye-tu/or/blob/master/note/note01.pdf">08</a>
+
 
 ## 參考書
 
@@ -32,16 +33,16 @@ Watt, J., Borhani, R., Katsaggelos, A. K., 2020. Machine Learning Refined: Found
 | 09/26           | Optimization & Python Refresher 			                 			|
 | 10/03           | Automatic Differentiation; Python; Declare exp1                      			|	 
 | 10/17           | Convex Sets & Functions; exp1 Due				              		        |
-| 10/24           | Convex Optimization Problems I; CVXPY; Declare exp2						|
-| 10/31           | Convex OPtimization Problems II; Duality I; CVXPY; Declare exp3		 		|
-| 11/07 期中考週  | Duality II; Support Vector Machine; exp2 Due; Declare ext1           		 	|
-| 11/14           | Neural Networks I; exp3 Due; Declare exp4 	              		 			|
-| 11/21           | Neural Networks II; ext1 Due; Declare ext2 							|
-| 11/28           | Linear Programming: Simplex Methods; exp4 Due; Declare exp5  	 			|
-| 12/05           | Linear Programming: Applications I; ext2 Due; Declare ext3 	 				|
-| 12/12           | Linear Programming: Applications II; exp5 Due; Declare exp6    			 	|
-| 12/19           | Dynamic Programming I; ext3 Due                          		 			|
-| 12/26           | Dynamic Programming II; exp6 Due                         		 			|
+| 10/24           | Convex Optimization Problems I; CVXPY I; Declare exp2					|
+| 10/31           | Convex Optimization Problems II; CVXPY II; Declare exp3			 		|
+| 11/07 期中考週  | Duality I; CVXPY III (SVM); exp2 Due; Declare ext1		           		 	|
+| 11/14           | Duality II; CVXPY IV (PO); exp3 Due; Declare exp4          		 			|
+| 11/21           | Linear Programming I (Simplex); ext1 Due; Declare ext2					|
+| 11/28           | Linear Programming II; CVXPY V; exp4 Due; Declare exp5		 			|
+| 12/05           | Linear Programming III; CVXPY VI; ext2 Due; Declare ext3 	 				|
+| 12/12           | Dynamic Programming I; exp5 Due; Declare exp6		   			 	|
+| 12/19           | Dynamic Programming II; ext3 Due                          		 			|
+| 12/26           | Dynamic Programming III; exp6 Due                         		 			|
 
 <!--
 
