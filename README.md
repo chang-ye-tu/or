@@ -2,8 +2,7 @@
 
 ## 上課教材
 
-<a href="https://github.com/chang-ye-tu/or/blob/master/note/note00.pdf">00</a>&nbsp; | &nbsp;<a href="https://github.com/chang-ye-tu/or/blob/master/note/note01.pdf">01</a>&nbsp; | &nbsp;<a href="https://github.com/chang-ye-tu/or/blob/master/note/note02.pdf">02</a>&nbsp; | &nbsp;<a href="https://github.com/chang-ye-tu/or/blob/master/note/note03.pdf">03</a>&nbsp; | &nbsp;<a href="https://github.com/chang-ye-tu/or/blob/master/note/note04.pdf">04</a>&nbsp; | &nbsp;<a href="https://github.com/chang-ye-tu/or/blob/master/note/note05.pdf">05</a>&nbsp; | &nbsp;<a href="https://github.com/chang-ye-tu/or/blob/master/note/note06.pdf">06</a>&nbsp; | &nbsp;<a href="https://github.com/chang-ye-tu/or/blob/master/note/note01.pdf">07</a>&nbsp; | &nbsp;<a href="https://github.com/chang-ye-tu/or/blob/master/note/note01.pdf">08</a>
-
+| &nbsp;<a href="https://github.com/chang-ye-tu/or/blob/master/note/note01.pdf">01</a>&nbsp; | &nbsp;<a href="https://github.com/chang-ye-tu/or/blob/master/note/note02.pdf">02</a>&nbsp; | &nbsp;<a href="https://github.com/chang-ye-tu/or/blob/master/note/note03.pdf">03</a>&nbsp; | &nbsp;<a href="https://github.com/chang-ye-tu/or/blob/master/note/note04.pdf">04</a>&nbsp; | &nbsp;<a href="https://github.com/chang-ye-tu/or/blob/master/note/note05.pdf">05</a>&nbsp; | &nbsp;<a href="https://github.com/chang-ye-tu/or/blob/master/note/note06.pdf">06</a>&nbsp; | &nbsp;<a href="https://github.com/chang-ye-tu/or/blob/master/note/note07.pdf">07</a>&nbsp; | &nbsp;<a href="https://github.com/chang-ye-tu/or/blob/master/note/note08.pdf">08</a>
 
 ## 參考書
 
