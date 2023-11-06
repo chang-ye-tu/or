@@ -173,7 +173,7 @@
 \section*{Lagrange Dual and Conjugate Function}
 \begin{align*}
   \text{minimize}\quad & f_0(x) \\
-  \text{subject to}\quad & A\,x\succcurlyeq b,\quad C\,x = d
+  \text{subject to}\quad & A\,x\preccurlyeq b,\quad C\,x = d
 \end{align*}
 \begin{itemize}
   \item dual function 
@@ -224,6 +224,46 @@
       \text{maximize}\quad & -b^\top\nu \\
       \text{subject to}\quad & A^\top\nu + c \succcurlyeq 0 
     \end{align*}
+\end{itemize}
+
+\newpage
+
+\section*{Equality Constrained Norm Minimization}
+%\vspace{-3mm}
+\begin{align*}
+  \text{minimize}\quad & \|x\| \\
+  \text{subject to}\quad & A\,x = b 
+\end{align*}
+\begin{itemize}%\setlength\itemsep{0em}
+  \item dual function is \\
+    \begin{align*}
+      g(\nu) &= \inf_x \big(\|x\| - \nu^\top A\,x + b^\top\nu\big) = \begin{cases} b^\top\nu & \|A^\top\nu\|_\star\leqslant 1 \\ -\infty & \text{otherwise} \end{cases}
+    \end{align*}
+    where $\ds\|\nu\|_\star = \sup_{\|u\|\leqslant 1}u^\top\nu$ is dual norm of $\|\cdot\|$
+  \item lower bound property: $p^\star\geqslant b^\top\nu$ if $\ds\|A^\top\nu\|_\star\leqslant 1$
+\end{itemize}
+
+\newpage
+
+\section*{Two-Way Partitioning}
+\vspace{-3mm}
+\begin{align*}
+  \text{minimize}\quad & x^\top Wx \\
+  \text{subject to}\quad & x_i^2 = 1, \quad i = 1, 2,\,\ldots,\,n 
+\end{align*}
+\begin{itemize}\setlength\itemsep{0em}
+  \item a nonconvex problem; feasible set contains $2^n$ discrete points
+  \item interpretation: partition $\{1, 2, \ldots, n\}$ into two sets encoded as $x_i = 1$ and $x_i = -1$
+  \item $W_{ij}$: cost of assigning $i$, $j$ to the same set\\
+        $-W_{ij}$: cost of assigning $i$, $j$ to different sets
+  \item dual function is \\
+    \scalebox{0.95}{\parbox{\linewidth}{%
+    \begin{align*}
+      g(\nu) &= \inf_x \Big(x^\top Wx + \sum_i\nu_i(x_i^2 - 1)\Big) = \inf_x\big(x^\top(W + \diag\nu)x - \mathbf{1}^\top\nu\big) \\ &= \begin{cases} -\mathbf{1}^\top\nu & \text{if } W + \diag\nu\succcurlyeq 0 \\ -\infty & \text{otherwise} \end{cases}
+    \end{align*}
+    }}
+    \vspace{-3mm}
+  \item lower bound property: $p^\star\geqslant -\mathbf{1}^\top\nu$ if $W + \diag\nu\succcurlyeq 0$
 \end{itemize}
 
 \newpage
@@ -410,6 +450,103 @@ if strong duality holds and $x$, $\lambda$, $\nu$ are optimal, they satisfy KKT 
       \item generalizes optimality condition $\ds\nabla f_0(x) = 0$ for unconstrained problem
     \end{itemize}
 \end{itemize}
+
+\newpage
+
+\section*{Perturbation and Sensitivity Analysis}
+
+{\bf unperturbed optimization and its dual} \\
+  \begin{minipage}[t]{0.5\textwidth}\vspace{-5mm}
+      \scalebox{0.9}{\parbox{\linewidth}{%
+      \begin{align*}
+        \text{minimize}\quad &f_0(x) \\
+        \text{subject to}\quad &f_i(x)\leqslant 0, \quad i = 1, 2,\,\ldots,\,m \\
+        \qquad\qquad &h_i(x) = 0, \quad i = 1, 2,\,\ldots,\,p
+      \end{align*}
+  }}
+    \end{minipage}
+    \begin{minipage}[t]{0.5\textwidth}\vspace{-5mm}
+      \scalebox{0.9}{\parbox{\linewidth}{%
+      \begin{align*}
+        \text{maximize}\quad & g(\lambda,\nu)\\
+        \text{subject to}\quad & \lambda\succcurlyeq 0
+      \end{align*}
+  }}
+    \end{minipage}
+
+\noindent{\bf perturbed optimization and its dual} \\
+\begin{minipage}[t]{0.575\textwidth}\vspace{-5mm}
+      \scalebox{0.9}{\parbox{\linewidth}{%
+      \begin{align*}
+        \text{minimize}\quad &f_0(x) \\
+        \text{subject to}\quad &f_i(x)\leqslant u_i, \quad i = 1, 2,\,\ldots,\,m \\
+        \qquad\qquad &h_i(x) = v_i, \quad i = 1, 2,\,\ldots,\,p 
+      \end{align*}
+  }}
+    \end{minipage}
+    \begin{minipage}[t]{0.425\textwidth}\vspace{-5mm}
+      \scalebox{0.9}{\parbox{\linewidth}{%
+      \begin{align*}
+        \text{maximize}\quad & g(\lambda,\nu) - u^\top\lambda - v^\top\nu\\
+        \text{subject to}\quad & \lambda\succcurlyeq 0
+      \end{align*}
+  }}
+    \end{minipage}
+\begin{itemize}\setlength\itemsep{0em}
+  \item $x$ is primal variable; $u$, $v$ are parameters
+  \item $\ds p^\star(u, v)$ is optimal value as a function of $u$, $v$ 
+  \item $\ds p^\star(0, 0)$ is optimal value of unperturbed problem
+\end{itemize}
+
+\newpage
+
+\section*{Global Sensitivity via Duality}
+
+assume strong duality holds for unperturbed problem, with $\lambda^\star$, $\nu^\star$ dual optimal \\
+
+\noindent
+apply weak duality to perturbed problem:  
+\begin{align*}
+  p^\star(u, v)\geqslant g(\lambda^\star, \nu^\star) - u^\top\lambda^\star - v^\top\nu^\star = p^\star(0, 0) - u^\top\lambda^\star - v^\top\nu^\star 
+\end{align*}
+
+\noindent{\bf implications} 
+\begin{itemize}\setlength\itemsep{0em}
+  \item if $\lambda_i^\star$ large, $p^\star$ increases greatly if $u_i < 0$
+  \item if $\lambda_i^\star$ small, $p^\star$ does not decrease much if $u_i > 0$
+  \item if $\nu_i^\star$ large and positive, $p^\star$ increases greatly if $v_i < 0$
+  \item if $\nu_i^\star$ large and negative, $p^\star$ increases greatly if $v_i > 0$
+  \item if $\nu_i^\star$ small and positive, $p^\star$ does not decrease much if $v_i > 0$
+  \item if $\nu_i^\star$ small and negative, $p^\star$ does not decrease much if $v_i < 0$
+\end{itemize}
+
+\newpage
+
+\section*{Local Sensitivity via Duality}
+
+if (in addition) $p^\star(u, v)$ is differentiable at $(0, 0)$, then  \\
+\scalebox{0.8}{\parbox{\linewidth}{%
+\begin{align*}
+  \lambda_i = -\frac{\partial p^\star(0, 0)}{\partial u_i}, \quad \nu_i = -\frac{\partial p^\star(0, 0)}{\partial v_i} 
+\end{align*}
+}}
+
+\noindent {\bf proof} (for $\lambda_i^\star$): from global sensitivity result, \\
+\scalebox{0.8}{\parbox{\linewidth}{%
+\begin{align*}
+  \frac{\partial p^\star(0, 0)}{\partial u_i} = \lim_{t\to 0+}\frac{p^\star(t e_i, 0) - p^\star(0, 0)}{t}\geqslant -\lambda_i^\star, \\
+  \frac{\partial p^\star(0, 0)}{\partial u_i} = \lim_{t\to 0-}\frac{p^\star(t e_i, 0) - p^\star(0, 0)}{t}\leqslant -\lambda_i^\star  
+\end{align*}
+}}
+
+\begin{minipage}{0.45\textwidth}\vspace{-2mm}
+  $p^\star(u)$ for a problem with one (inequality) constraint: 
+\end{minipage}
+\begin{minipage}{0.55\textwidth}\vspace{-2mm}
+  \begin{center}
+    \includegraphics[scale=0.55,page=10]{fig/05.pdf}
+  \end{center}
+\end{minipage}
 
 \newpage
 

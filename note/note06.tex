@@ -368,10 +368,10 @@ two common approaches to handle uncertainty
   \item assume $\ds a_i\sim\mathsf{N}(\overline{a}_i, \Sigma_i)$
   \item $\ds a_i^\top x\sim\mathsf{N}(\overline{a}_i^\top x, x^\top\Sigma_i\,x)$, so
     \begin{align*}
-      \prb\{a_i^\top\leqslant b_i\} = \Phi\Bigg(\frac{b_i - \overline{a}_i^\top x}{\|\Sigma_i^\frac{1}{2} x\|_2}\Bigg)
+      \prb\{a_i^\top x\leqslant b_i\} = \Phi\Bigg(\frac{b_i - \overline{a}_i^\top x}{\big\|\,\Sigma_i^\frac{1}{2} x\,\big\|_2}\Bigg)
     \end{align*}
     where $\ds\Phi(u) = \frac{1}{\sqrt{2\pi}}\int_{-\infty}^u e^{-\frac{t^2}{2}}\,\text{d}t\;$ (cdf of $\mathsf{N}(0, 1)$)
-  \item $\ds\prb\{a_i^\top\leqslant b_i\}\geqslant\eta$ can be expressed as $\overline{a}_i^\top x + \Phi^{-1}(\eta)\,\big\|\,\Sigma_i^\frac{1}{2} x\,\big\|_2\leqslant b_i$
+  \item $\ds\prb\{a_i^\top x\leqslant b_i\}\geqslant\eta$ can be expressed as $\overline{a}_i^\top x + \Phi^{-1}(\eta)\,\big\|\,\Sigma_i^\frac{1}{2} x\,\big\|_2\leqslant b_i$
   \item for $\ds\eta\geqslant\frac{1}{2}$, robust LP equivalent to SOCP
     \begin{align*}
       \text{minimize}\quad & c^\top x \\
@@ -781,7 +781,7 @@ set of achievable objective values $\ds\mathcal{O} = \{f_0(x)\;|\;x\;\text{feasi
 \section*{Example: Risk-Return Trade-off in Portfolio Optimization}
 
 \begin{itemize}
-  \item risk-return trade-off: minimize $\ds(-\overline{p}^\top x, x^\top\Sigma\,x)$, subject to \\$\mathbf{1}^\top x = 1$, $x\preccurlyeq 0$
+  \item risk-return trade-off: minimize $\ds(-\overline{p}^\top x, x^\top\Sigma\,x)$, subject to \\$\mathbf{1}^\top x = 1$, $x\succcurlyeq 0$
   \item with $\lambda = (1, \gamma)$ we obtain the scalarized problem
     \begin{align*}
       \text{minimize}\quad &-\overline{p}^\top x + \gamma\,x^\top\Sigma\,x \\

@@ -34,14 +34,14 @@ Watt, J., Borhani, R., Katsaggelos, A. K., 2020. Machine Learning Refined: Found
 | 10/17           | Convex Sets & Functions; exp1 Due				              		        |
 | 10/24           | Convex Optimization Problems I; CVXPY I; Declare exp2					|
 | 10/31           | Convex Optimization Problems II; CVXPY II; Declare exp3			 		|
-| 11/07 期中考週  | Duality I; CVXPY III (SVM); exp2 Due; Declare ext1		           		 	|
-| 11/14           | Duality II; CVXPY IV (PO); exp3 Due; Declare exp4          		 			|
-| 11/21           | Linear Programming I (Simplex); ext1 Due; Declare ext2					|
-| 11/28           | Linear Programming II; CVXPY V; exp4 Due; Declare exp5		 			|
-| 12/05           | Linear Programming III; CVXPY VI; ext2 Due; Declare ext3 	 				|
-| 12/12           | Dynamic Programming I; exp5 Due; Declare exp6		   			 	|
-| 12/19           | Dynamic Programming II; ext3 Due                          		 			|
-| 12/26           | Dynamic Programming III; exp6 Due                         		 			|
+| 11/07 期中考週  | Duality I; CVXPY III (DCP, GP); exp2 Due; Declare ext1	           		 	|
+| 11/14           | Duality II; CVXPY IV (SVM, PO); exp3 Due; Declare exp4      	 			|
+| 11/21           | Neural Network & Deep Learning; ext1 Due; Declare ext2					|
+| 11/28           | Linear Programming I (Simplex); CVXPY V; exp4 Due; Declare exp5	 			|
+| 12/05           | Linear Programming II; CVXPY VI; ext2 Due; Declare ext3 	 				|
+| 12/12           | Linear Programming III; exp5 Due; Declare exp6		   			 	|
+| 12/19           | Dynamic Programming I; ext3 Due                          		 			|
+| 12/26           | Dynamic Programming II; exp6 Due                         		 			|
 
 <!--
 
