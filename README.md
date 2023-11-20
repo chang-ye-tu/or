@@ -37,7 +37,7 @@ Watt, J., Borhani, R., Katsaggelos, A. K., 2020. Machine Learning Refined: Found
 | 10/31           | Convex Optimization Problems II; CVXPY II; Declare exp3			 		|
 | 11/07 期中考週  | CVXPY III (DCP, GP); exp2 Due; Declare ext1	  		         		 	|
 | 11/14           | Duality; Portfolio Optimization; exp3 Due				     	 		|
-| 11/21           | SVM; Neural Network; ext1 Due; Declare ext2, exp4						|
+| 11/21           | SVM; Neural Network; ext1 Due; Declare exp4, ext2						|
 | 11/28           | Linear Programming I; exp4 Due; Declare exp5			 			|
 | 12/05           | Linear Programming II; ext2 Due; Declare ext3						|
 | 12/12           | Linear Programming III (Simplex); exp5 Due; Declare exp6	   			 	|
