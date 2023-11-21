@@ -1,9 +1,10 @@
 \documentclass[11pt]{extarticle} 
-\usepackage{amsmath,amsfonts,amssymb,amsthm,graphicx,xcolor,natbib,enumitem,booktabs,tabularx}
+\usepackage{unicode-math}
+\usepackage{mathrsfs}
+\usepackage{amsthm,graphicx,xcolor,natbib,enumitem,booktabs,tabularx}
 \usepackage[paperwidth=126mm, paperheight=96mm, top=5mm, bottom=5mm, right=5mm, left=5mm]{geometry}
 \pagenumbering{gobble}
 
-\usepackage{unicode-math}
 \usepackage[BoldFont,SlantFont]{xeCJK}  
 \xeCJKsetemboldenfactor{2}
 %\setCJKmainfont{cwTeX Q Kai Medium}
@@ -35,13 +36,6 @@
 \newcommand{\ceil}[1]{\lceil #1 \rceil}
 \newcommand{\Set}[2]{\big\{ \ #1\ \big|\ #2\ \big\}}
 \newcommand{\pdiff}[2]{\frac{\partial\hfil#1\hfil}{\partial #2}}
-\newcommand{\vx}{\mathbf{x}}
-\newcommand{\vd}{\mathbf{d}}
-\newcommand{\vg}{\mathbf{g}}
-\newcommand{\vH}{\mathbf{H}}
-\newcommand{\va}{\mathbf{a}}
-\newcommand{\vb}{\mathbf{b}}
-\newcommand{\vy}{\mathbf{y}}
 
 \DeclareMathOperator\prb{{\sf P}}
 \DeclareMathOperator\expc{{\sf E}}
@@ -492,7 +486,7 @@
 \begin{itemize}
   \item {\bf log-sum-exp function}: $\ds f(x) = \log\Big(\sum_{k = 1}^n e^{x_k}\Big)$ is convex:
     \begin{align*}
-      \nabla^2 f(x) = \frac{1}{\mathbf{1}^\top z}\diag(z) - \frac{1}{(\mathbf{1}^\top z)^2}zz^\top, \quad z_k = e^{x_k}
+      \nabla^2 f(x) = \frac{1}{\symbfup{1}^\top z}\diag(z) - \frac{1}{(\symbfup{1}^\top z)^2}zz^\top, \quad z_k = e^{x_k}
     \end{align*}
   \item to show that $\nabla^2 f(x)\succcurlyeq 0$, one must verify $\ds v^\top\nabla^2 f(x)\,v\geqslant 0\;\forall\,v$:
     \begin{align*}  
