@@ -1,9 +1,11 @@
 \documentclass[11pt]{extarticle} 
-\usepackage{amsmath,amsfonts,amssymb,amsthm,graphicx,xcolor,natbib,enumitem,booktabs,tabularx}
-\usepackage[paperwidth=126mm, paperheight=96mm, top=5mm, bottom=5mm, right=5mm, left=5mm]{geometry}
+%% https://tex.stackexchange.com/questions/528831/why-doesnt-the-bm-package-work-with-the-unicode-math-package
+\usepackage{unicode-math}
+\usepackage{mathrsfs}
+\usepackage{amsthm,graphicx,xcolor,natbib,enumitem,booktabs,tabularx}
+\usepackage[paperwidth=126mm,paperheight=96mm,top=5mm,bottom=5mm,right=5mm,left=5mm]{geometry}
 \pagenumbering{gobble}
 
-\usepackage{unicode-math}
 \usepackage[BoldFont,SlantFont]{xeCJK}  
 \xeCJKsetemboldenfactor{2}
 \setCJKmainfont{cwTeX Q Yuan Medium}
@@ -27,23 +29,16 @@
 \newcommand{\ceil}[1]{\lceil #1 \rceil}
 \newcommand{\Set}[2]{\big\{ \ #1\ \big|\ #2\ \big\}}
 \newcommand{\pdiff}[2]{\frac{\partial\hfil#1\hfil}{\partial #2}}
-\newcommand{\vf}{\mathbf{f}}
-\newcommand{\vx}{\mathbf{x}}
-\newcommand{\vw}{\mathbf{w}}
-\newcommand{\vd}{\mathbf{d}}
-\newcommand{\vg}{\mathbf{g}}
-\newcommand{\vH}{\mathbf{H}}
-\newcommand{\va}{\mathbf{a}}
-\newcommand{\vb}{\mathbf{b}}
-\newcommand{\vy}{\mathbf{y}}
-
-\newcommand{\vbb}{\boldsymbol{\beta}}
-\newcommand{\vS}{\mathbf{S}}
-\newcommand{\vR}{\mathbf{R}}
-\newcommand{\vW}{\mathbf{W}}
-\newcommand{\ve}{\mathbf{e}}
-\newcommand{\vr}{\mathbf{r}}
-\newcommand{\vZero}{\mathbf{0}}
+\newcommand{\vf}{\symbfup{f}}
+\newcommand{\vx}{\symbfup{x}}
+\newcommand{\vw}{\symbfup{w}}
+\newcommand{\vd}{\symbfup{d}}
+\newcommand{\vg}{\symbfup{g}}
+\newcommand{\vH}{\symbfup{H}}
+\newcommand{\vb}{\symbfup{b}}
+\newcommand{\vy}{\symbfup{y}}
+\newcommand{\vbb}{\symbfup{\beta}}
+\newcommand{\vW}{\symbfup{W}}
 
 \DeclareMathOperator\prb{{\sf P}}
 \DeclareMathOperator\expc{{\sf E}}
@@ -79,22 +74,13 @@
 %\usepackage{import}
 \usepackage{subfigure}
 %\usepackage{authblk}
-%\usepackage[utf8]{inputenc} % allow utf-8 input
-%\usepackage[T1]{fontenc}    % use 8-bit T1 fonts
 %\usepackage{xr-hyper}       % cross-referencing
-%\usepackage{hyperref}       % hyperlinks
 \usepackage{url}            % simple URL typesetting
-%\usepackage{booktabs}       % professional-quality tables
-%\usepackage{amsfonts}       % blackboard math symbols
 %\usepackage{nicefrac}       % compact symbols for 1/2, etc.
 %\usepackage{microtype, comment}      % microtypography
-\usepackage{amssymb, xcolor, amsmath, soul, multirow, caption, graphicx, comment, amsthm, adjustbox, dsfont}
+\usepackage{soul, multirow, caption, comment, amsthm, adjustbox, dsfont}
 %\usepackage[shortlabels]{enumitem}
-\usepackage{bm}
-%\usepackage{graphicx}
-\usepackage{color}
 %\usepackage{lineno}
-\usepackage{mathrsfs}
 \usepackage{algorithm2e}[ruled]
 %\usepackage[normalem]{ulem}
 %\usepackage[left]{showlabels}
@@ -114,28 +100,28 @@
 %\mbox{\parbox[t]{\marginparwidth}{\raggedleft\normalfont\small\ttfamily\color{blue}#1}}} 
 
 % Variables and fields
-%\newcommand{\x}{\bm{x}}  
-\newcommand{\X}{\mathbf{X}}%{\bm{X}}
-\newcommand{\z}{\mathbf{z}}%{\bm{z}}
-\newcommand{\Z}{\mathbf{Z}}%{\bm{Z}}
-\newcommand{\s}{\mathbf{s}}%{\bm{s}}                    
-%\newcommand{\y}{\bm{y}}            
-\newcommand{\Y}{\mathbf{Y}}%{\bm{Y}}  	   
-\newcommand{\W}{\mathbf{W}}%{\bm{W}}   	       
-\newcommand{\bb}{\mathbf{b}}%{\bm{b}}        	          
-\newcommand{\btheta}{\theta}%{\bm{\theta}}
-%\newcommand{\f}{\bm{f}} 
-\newcommand{\Hp}{\Theta}%{\bm{\Theta}} 
-\newcommand{\g}{\mathbf{g}}%{\bm{g}}
-\newcommand{\G}{\mathbf{G}}%{\bm{G}}
-\newcommand{\V}{\mathbf{V}}%{\bm{V}}
+\newcommand{\x}{\symbfup{x}}  
+\newcommand{\X}{\symbfup{X}}
+\newcommand{\z}{\symbfup{z}}
+\newcommand{\Z}{\symbfup{Z}}
+\newcommand{\s}{\symbfup{s}}                    
+\newcommand{\y}{\symbfup{y}}            
+\newcommand{\Y}{\symbfup{Y}}  	   
+\newcommand{\W}{\symbfup{W}}   	       
+\newcommand{\bb}{\symbfup{b}}        	          
+\newcommand{\btheta}{\symbfup{\theta}}
+\newcommand{\f}{\symbfup{f}} 
+\newcommand{\Hp}{\symbfup{\Theta}} 
+\newcommand{\g}{\symbfup{g}}
+\newcommand{\G}{\symbfup{G}}
+\newcommand{\V}{\symbfup{V}}
 
 % Spaces
 \newcommand{\Ro}{\mathbb{R}}           	                % real line
 \newcommand{\bigO}{\mathcal{O}}
 
 % Maps and functions
-\newcommand{\gen}{\mathbf{g}}%{\bm{g}}       	                % generator
+\newcommand{\gen}{\symbfup{g}}       	                % generator
 \newcommand{\disc}{d}                 		        % discriminator
 \newcommand{\loss}{\mathcal{L}}     	                % loss function
 
@@ -674,15 +660,15 @@ In order to evaluate this expression we need to evaluate the following terms:
 \begin{align}
   \df{\Pi}{\vx^{(L+1)}} &= -2 (\vy-\vx^{(L+1)})^T  \\
   \df{\xi^{(l+1)}}{\vx^{(l)}} &= \vW^{(l+1)}\\
-  \df{\vx^{(l)}}{\xi^{(l)}} &= \mathbf{S}^{(l)} \equiv {\rm diag}[\sigma'(\xi^{(l)}_1), \cdots, \sigma'(\xi^{(l)}_{H_l})],
+  \df{\vx^{(l)}}{\xi^{(l)}} &= \symbfup{S}^{(l)} \equiv {\rm diag}[\sigma'(\xi^{(l)}_1), \cdots, \sigma'(\xi^{(l)}_{H_l})],
 \end{align}
 where the last two relations hold for any network layer $l$, $H_l$ is the width of that particular layer, and $\sigma'$ denotes the derivative of the activation with respect to its argument. Using these relations in (\ref{eqn:dpidxi}), we arrive at,
 \begin{align}
-  \df{\Pi}{\xi^{(l)}} &= \label{eqn:dpidxi1} \df{\Pi}{\vx^{(L+1)}} \cdot \mathbf{S}^{(L+1)} \cdot \vW^{(L+1)} \cdots \mathbf{S}^{(l+1)} \cdot \vW^{(l+1)} \cdot \mathbf{S}^{(l)}. 
+  \df{\Pi}{\xi^{(l)}} &= \label{eqn:dpidxi1} \df{\Pi}{\vx^{(L+1)}} \cdot \symbfup{S}^{(L+1)} \cdot \vW^{(L+1)} \cdots \symbfup{S}^{(l+1)} \cdot \vW^{(l+1)} \cdot \symbfup{S}^{(l)}. 
 \end{align}
 Taking the transpose, and recognizing that $\Sigma^{(l)}$ is diagonal and therefore symmetric, we finally arrive at
 \begin{align}
-  \df{\Pi}{\xi^{(l)}} &= \label{eqn:dpidxifinal} \mathbf{S}^{(l)} \vW^{(l+1)T} \mathbf{S}^{(l+1)} \cdots   \vW^{(L+1)T} \mathbf{S}^{(L+1)} [-2 (\vy-\vx^{(L+1)})]. 
+  \df{\Pi}{\xi^{(l)}} &= \label{eqn:dpidxifinal} \symbfup{S}^{(l)} \vW^{(l+1)T} \symbfup{S}^{(l+1)} \cdots   \vW^{(L+1)T} \symbfup{S}^{(L+1)} [-2 (\vy-\vx^{(L+1)})]. 
 \end{align}
 This evaluation can also be represented as a computational graph. In fact, as shown in Figure \ref{fig:comp_graph}, it can be appended to the original graph, where this part of the computation appear in the upper row of the graph. Note that we are now traversing in the backward direction.  Hence the name back propagation. 
 
@@ -696,7 +682,7 @@ This evaluation can also be represented as a computational graph. In fact, as sh
 
 The final step is to evaluate an explicit expression for $\df{\Pi}{\vW^{(l)}}$. This can be done by recognizing,
 \begin{align}\label{eqn:bpr1}
-  \df{\Pi}{\vW^{(l)}} &= \df{\Pi}{\xi^{(l)}} \cdot \df{ \xi^{(l)} }{\mathbf{W}^{(l)}}  = \df{\Pi}{\xi^{(l)}} \otimes \vx^{(l-1)}, 
+  \df{\Pi}{\vW^{(l)}} &= \df{\Pi}{\xi^{(l)}} \cdot \df{ \xi^{(l)} }{\symbfup{W}^{(l)}}  = \df{\Pi}{\xi^{(l)}} \otimes \vx^{(l-1)}, 
 \end{align}
 where $[\vx \otimes \vy]_{ij} = x_iy_j$  is the outer product. Thus, in order to evaluate $\df{\Pi}{\vW^{(l)}}$ we need $\vx^{(l-1)}$ which is evaluted during the forward phase and $\df{\Pi}{\xi^{(l)}}$ which is evaluated during back propagation. 
 
