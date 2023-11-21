@@ -8,11 +8,11 @@
 
 - [Boyd, S., Vandenberghe, L., 2004. Convex Optimization. Cambridge University Press, Cambridge.](https://web.stanford.edu/~boyd/cvxbook/bv_cvxbook.pdf)
 - [Vanderbei, R. J., 2020. Linear Programming: Foundations and Extensions, 5th ed. Springer Nature, Cham.](https://link.springer.com/book/10.1007/978-3-030-39415-8)
-- [Kochenderfer, M. J., Wheeler, T. A., Wray, K. H., 2022. Algorithms for Decision Making. MIT Press, Cambridge, MA.](https://algorithmsbook.com/files/dm.pdf) 
-- [Kochenderfer, M. J., Wheeler, T. A., 2019. Algorithms for Optimization. MIT Press, Cambridge, MA.](https://algorithmsbook.com/optimization/files/optimization.pdf)
 
 <!--
 Matoušek, J., Gärtner, B., 2007. Understanding and Using Linear Programming. Springer-Verlag, Berlin.
+- [Kochenderfer, M. J., Wheeler, T. A., Wray, K. H., 2022. Algorithms for Decision Making. MIT Press, Cambridge, MA.](https://algorithmsbook.com/files/dm.pdf) 
+- [Kochenderfer, M. J., Wheeler, T. A., 2019. Algorithms for Optimization. MIT Press, Cambridge, MA.](https://algorithmsbook.com/optimization/files/optimization.pdf)
 
 Watt, J., Borhani, R., Katsaggelos, A. K., 2020. Machine Learning Refined: Foundations, Algorithms, and Applications, 2nd ed. Cambridge University Press, Cambridge.  
 
