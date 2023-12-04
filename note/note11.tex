@@ -105,7 +105,7 @@
 \newcommand{\ie}{\,\Longrightarrow\,}
 
 \setbeamertemplate{headline}{}
-\title{作業研究\\ 11. The Simplex Method}
+\title{作業研究\\ 11. The Simplex Method. Dual of Linear Program}
 \author{}%Chang-Ye Tu}
 \date{}
 
@@ -117,7 +117,7 @@
 \begin{frame}
   \frametitle{The Simplex Method: A Demonstration}
   \begin{center}
-    {\color{C2}An iterative process starting with suboptimal solution and stopping at a solution which cannot be improved} 
+    {\color{C2}An iterative process starting with suboptimal solution and stopping at a feasible solution which cannot be improved} 
   \end{center}
   \begin{columns}
     \begin{column}{0.5\textwidth}
@@ -461,6 +461,7 @@
   \frametitle{The Simplex Method: A Formal Introduction}
   \begin{columns}
     \begin{column}{0.5\textwidth}
+      \vspace{-9mm}
       \begin{itemize}
         \item LP in standard form: 
           \begin{align*}
@@ -475,6 +476,7 @@
           \end{align*}
       \end{itemize}
     \end{column}
+    \hspace{-3mm}
     \begin{column}{0.5\textwidth}
       \begin{table}[ht]
         \centering
@@ -508,6 +510,7 @@
   \frametitle{The Simplex Method: A Formal Introduction (Cont'd)}
   \begin{columns}
     \begin{column}{0.5\textwidth}
+      \vspace{-5mm}
       \begin{itemize}
         \item The starting dictionary
           \begin{align*}
@@ -520,6 +523,7 @@
         \item Initially $\mathcal{N} = \{1,\,2,\,\ldots,\,n\}$ and $\mathcal{B} = \{n+1,\,n+2,\,\ldots,\,n+m\}$
       \end{itemize}
     \end{column}
+    \hspace{-7mm}
     \begin{column}{0.5\textwidth}
       \begin{itemize}
         \item The current dictionary is of the form 
@@ -558,6 +562,7 @@
           \end{align*}
       \end{itemize}
     \end{column}
+    \hspace{-7mm}
     \begin{column}{0.5\textwidth}
       \begin{itemize}
         \item The original problem has a feasible solution iff the optimal solution of the auxiliary problem is zero.
@@ -720,6 +725,12 @@
                                 &x_1 + 3 x_2 + x_3 + 2 x_4\leqslant 3\\
                                 &x_1,\;x_2,\;x_3,\;x_4\geqslant 0 \\
                                 & \\
+        \text{maximize}\quad    &3 x_1 + 2 x_2 + 4 x_3\\
+        \text{subject to}\quad  &x_1 + x_2 + 2 x_3\leqslant 4\\
+                                &2x_1 + 3 x_3\leqslant 5\\
+                                &2 x_1 + x_2 + 3 x_3\leqslant 7\\
+                                &x_1,\;x_2,\;x_3\geqslant 0\\
+                                & \\
         \text{maximize}\quad    &5 x_1 + 5 x_2 + 3 x_3\\
         \text{subject to}\quad  &x_1 + 3 x_2 + x_3\leqslant 3\\
                                 &-x_1 + 3 x_3\leqslant 2\\
@@ -735,6 +746,12 @@
                                 &2 x_1 - x_2 + 2 x_3 \leqslant 4\\
                                 &x_1,\;x_2,\;x_3\geqslant 0\\
                                 & \\
+        \text{maximize}\quad    &5 x_1 + 6 x_2 + 9 x_3 + 8 x_4\\
+        \text{subject to}\quad  &x_1 + 2 x_2 + 3 x_3 + x_4 \leqslant 5\\
+                                &x_1 + x_2 + 2 x_3 + 3 x_4 \leqslant 3\\
+                                &x_1,\;x_2,\;x_3,\;x_4\geqslant 0 \\
+                                & \\
+                                & \\
         \text{minimize}\quad    &x_1 + 8 x_2 + 9 x_3 + 2 x_4 + 7 x_5 + 3 x_6\\
         \text{subject to}\quad  &x_1 + x_2 + x_3\geqslant 1\\
                                 &-x_1 + x_4 + x_5 = 0\\
@@ -744,6 +761,137 @@
       \end{align*}
     \end{column}
   \end{columns}
+\end{frame}
+
+\begin{frame}
+  \frametitle{The Dual of Linear Program}
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      %\vspace{-4mm}
+      \begin{itemize}
+        \item LP in standard form: 
+          \begin{align}
+            \text{maximize}  \quad& x_1 + 2 x_2 + x_3 + x_4 \nonumber\\
+            \text{subject to}\quad& x_1 + 2 x_2 + x_3 \leqslant 2 \label{eq1}\\
+                                  & x_2 + x_4 \leqslant 1 \label{eq2} \\
+                                  & x_1 + 2 x_3 \leqslant 1 \label{eq3} \\
+                                  & x_j\geqslant 0, \quad j= 1,\,\ldots,\,4 \nonumber 
+          \end{align}
+        \item Suppose the LP-solver find an ``optimal'' solution
+          $\ds x_1 = 1$, $\ds x_2 = \frac{1}{2}$, $\ds x_3 = 0$, $\ds x_4 = \frac{1}{2}$ with maximum $\ds\frac{5}{2}$, how can we check this?
+      \end{itemize}
+    \end{column}
+    \hspace{-3mm}
+    \begin{column}{0.5\textwidth}
+      \begin{itemize}
+        \item Scale \eqref{eq1} by $\ds\frac{1}{2}$, add \eqref{eq2}, and add \eqref{eq3} scaled by $\ds\frac{1}{2}$, we get for every feasible $\ds x_j$, $j= 1,\,\ldots,\,4$ $$\ds x_1 + 2 x_2 + \frac{3}{2}x_3 + x_4\leqslant\frac{5}{2}$$
+        \item The objective $$x_1 + 2 x_2 + x_3 + x_4\leqslant x_1 + 2 x_2 + \frac{3}{2}x_3 + x_4\leqslant\frac{5}{2}$$ so $\ds\frac{5}{2}$ is indeed optimal. 
+      \end{itemize}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}
+  \frametitle{The Dual of Linear Program (Cont'd)}
+  \begin{itemize}\setlength{\itemsep=0pt}
+    \item LP in standard form: 
+      \begingroup
+      \addtolength{\jot}{-2pt}
+      \begin{align*}
+        \text{maximize}  \quad& \sum_{j=1}^n c_j x_j \\
+        \text{subject to}\quad& \sum_{j=1}^n a_{1j}x_j\leqslant b_1\\
+                              & \sum_{j=1}^n a_{2j}x_j\leqslant b_2\\
+                              & \ldots \ldots \ldots\\
+                              & \sum_{j=1}^n a_{mj}x_j\leqslant b_m\\
+                              & x_j\geqslant 0, \quad j= 1,\,2,\,\ldots,\,n 
+      \end{align*}
+      \endgroup
+    \item For every choice of the ``scaling factors'' $\ds y_i\geqslant 0$, $\ds i = 1,\,2,\,\ldots,\,m$, $$y_1\sum_{j=1}^n a_{1j}x_j + y_2\sum_{j=1}^n a_{2j}x_j + \cdots + y_m\sum_{j=1}^n a_{mj}x_j \leqslant y_1 b_1 + y_2 b_2 + \cdots + y_m b_m$$ 
+    \item Rearrange the inequality as $$\ds x_1\sum_{i=1}^m a_{i1}y_i + x_2\sum_{i=1}^m a_{i2}y_i + \cdots + x_n\sum_{i=1}^m a_{in}y_i \leqslant y_1 b_1 + y_2 b_2 + \cdots + y_m b_m$$ 
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{The Dual of Linear Program (Cont'd)}
+  \begin{itemize}\setlength{\itemsep=0pt}
+    \item Choose $\ds y_i$, $\ds i = 1,\,2,\,\ldots,\,m$ such that
+      \begingroup
+      \addtolength{\jot}{-2pt}
+      \begin{align*}
+        c_1 \leqslant \sum_{i=1}^m a_{i1}y_i, \quad c_2 \leqslant \sum_{i=1}^m a_{i2}y_i, \quad \ldots, \quad c_n \leqslant \sum_{i=1}^m a_{in}y_i
+      \end{align*}
+      \endgroup
+      Then $$c_1 x_1 + c_2 x_2 + \cdots + c_n x_n \leqslant x_1\sum_{i=1}^m a_{i1}y_i + x_2\sum_{i=1}^m a_{i2}y_i + \cdots + x_n\sum_{i=1}^m a_{in}y_i \leqslant y_1 b_1 + y_2 b_2 + \cdots + y_m b_m$$
+    \item To make the upper bound tighter, we have the LP in dual form: 
+      \begingroup
+      \addtolength{\jot}{-2pt}
+      \begin{align*}
+        \text{minimize}  \quad& \sum_{i=1}^n b_i y_i \\
+        \text{subject to}\quad& \sum_{i=1}^n a_{i1}y_i\geqslant c_1\\
+                              & \sum_{i=1}^n a_{i2}y_i\geqslant c_2\\
+                              & \ldots \ldots \ldots\\
+                              & \sum_{i=1}^n a_{in}y_i\geqslant c_m\\
+                              & y_i\geqslant 0, \quad i= 1,\,2,\,\ldots,\,m 
+      \end{align*}
+      \endgroup
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{The Primal-Dual Pairs}
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      \begin{itemize}
+        \item The Primal  
+          \begin{align*}
+            \text{maximize}  \quad& c^\top x \\
+            \text{subject to}\quad& A\,x \preccurlyeq b\\
+                                  & x\succcurlyeq 0
+          \end{align*}
+        \item The Primal  
+          \begin{align*}
+            \text{minimize}  \quad& c^\top x \\
+            \text{subject to}\quad& A\,x \succcurlyeq b\\
+                                  & x\succcurlyeq 0
+          \end{align*}
+      \end{itemize}
+    \end{column}
+    \hspace{-7mm}
+    \begin{column}{0.5\textwidth}
+      \begin{itemize}
+        \item The Dual 
+          \begin{align*}
+            \text{minimize}  \quad& b^\top y \\
+            \text{subject to}\quad& A^\top\,y \succcurlyeq c\\
+                                  & y\succcurlyeq 0
+          \end{align*}
+        \item The Dual 
+          \begin{align*}
+            \text{maximize}  \quad& b^\top y \\
+            \text{subject to}\quad& A^\top\,y \preccurlyeq c\\
+                                  & y\succcurlyeq 0
+          \end{align*}
+      \end{itemize}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}
+  \begin{table}[ht]
+    \centering
+    \begin{tabular}{cc}
+      \toprule
+      Primal (max) & Dual (min) \\
+      \midrule
+      $\geqslant$ constraint & $\leqslant 0$ variable \\
+      $\leqslant$ constraint & $\geqslant 0$ variable \\
+      $=$ constraint & free variable \\
+      $\geqslant 0$ variable & $\leqslant$ constraint \\
+      $\leqslant 0$ variable & $\geqslant$ constraint \\
+      free variable & $=$ constraint \\
+      \bottomrule
+   \end{tabular}
+ \end{table}
 \end{frame}
 
 \end{document}
