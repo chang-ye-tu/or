@@ -38,10 +38,10 @@ Watt, J., Borhani, R., Katsaggelos, A. K., 2020. Machine Learning Refined: Found
 | 11/14           | Duality; Portfolio Optimization; exp3 Due				     	 		|
 | 11/21           | SVM; Neural Network; ext1 Due; Declare exp4, ext2						|
 | 11/28           | Linear Programming I; exp4 Due; Declare exp5			 			|
-| 12/05           | Linear Programming II; ext2 Due; Declare ext3						|
-| 12/12           | Linear Programming III (Simplex); exp5 Due; Declare exp6	   			 	|
-| 12/19           | Dynamic Programming I; ext3 Due                          		 			|
-| 12/26           | Dynamic Programming II; exp6 Due                         		 			|
+| 12/05           | Linear Programming II; ext2 Due								|
+| 12/12           | Linear Programming III (Simplex); exp5 Due; Declare exp6, exp7			 	|
+| 12/19           | Dynamic Programming I         		              		 			|
+| 12/26           | Dynamic Programming II; exp6, exp7 Due                   		 			|
 
 <!--
 
