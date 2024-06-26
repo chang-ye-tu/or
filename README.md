@@ -9,21 +9,47 @@
 - [Boyd, S., Vandenberghe, L., 2004. Convex Optimization. Cambridge University Press, Cambridge.](https://web.stanford.edu/~boyd/cvxbook/bv_cvxbook.pdf)
 - [Vanderbei, R. J., 2020. Linear Programming: Foundations and Extensions, 5th ed. Springer Nature, Cham.](https://link.springer.com/book/10.1007/978-3-030-39415-8)
 
+
+## 其他資源
+
+- [演算法筆記](https://web.ntnu.edu.tw/~algo/)
+
 <!--
 Matoušek, J., Gärtner, B., 2007. Understanding and Using Linear Programming. Springer-Verlag, Berlin.
 - [Kochenderfer, M. J., Wheeler, T. A., Wray, K. H., 2022. Algorithms for Decision Making. MIT Press, Cambridge, MA.](https://algorithmsbook.com/files/dm.pdf) 
 - [Kochenderfer, M. J., Wheeler, T. A., 2019. Algorithms for Optimization. MIT Press, Cambridge, MA.](https://algorithmsbook.com/optimization/files/optimization.pdf)
 
 Watt, J., Borhani, R., Katsaggelos, A. K., 2020. Machine Learning Refined: Foundations, Algorithms, and Applications, 2nd ed. Cambridge University Press, Cambridge.  
+Ruszczyński, A., 2006. Nonlinear Optimization. Princeton University Press, Princeton.
 
-- [Arkadi Nemirovski: Lecture Notes](https://www2.isye.gatech.edu/~nemirovs/)
+- [Arkadi Nemirovski: Lecture Notes]( https://www2.isye.gatech.edu/~nemirovs/ )
 - [Nesterov, Y., 2019. Lectures on Convex Optimization, 2nd ed. Springer Nature, Cham.](https://link.springer.com/book/10.1007/978-3-319-91578-4)
 - [Bertsekas, D. P., 2012. Dynamic Programming and Optimal Control (2 Volumes), 4th ed. Athena Scientific.](http://www.athenasc.com/dpbook.html)
+- [Güler O., 2010. Foundations of Optimization. Springer-Verlag, Berlin.](https://link.springer.com/book/10.1007/978-0-387-68407-9)
 - [Matoušek, J., Gärtner, B., 2007. Understanding and Using Linear Programming. Springer-Verlag, Berlin.](https://link.springer.com/book/10.1007/978-3-540-30717-4)
 - [Nocedal, J., Wright, S. J., 2006. Numerical Optimization, 2nd ed. Springer-Verlag, NY.](https://link.springer.com/book/10.1007/978-0-387-40065-5)
 -->
 
 ## 授課時程
+
+| 上課時間        | 課程進度                                                             			|
+|-----------------|---------------------------------------------------------------------------------------------|
+| 09/10           | Orientation & Introduction; Placement Test                           			|
+| 09/24           | Jupyter Notebook: Markdown & LaTeX                                   			|
+| 10/01           | Optimization & Python Refresher 			                 			|
+| 10/08           | Automatic Differentiation; Python; Declare exp1                      			|	 
+| 10/15           | Convex Sets & Functions; exp1 Due				              		        |
+| 10/22           | Convex Optimization Problems I; CVXPY I; Declare exp2					|
+| 10/29           | Convex Optimization Problems II; CVXPY II; Declare exp3			 		|
+| 11/05           | CVXPY III (DCP, GP); exp2 Due	        		         		 	|
+| 11/12           | Duality; Portfolio Optimization; exp3 Due				     	 		|
+| 11/19           | SVM; Neural Network; Declare exp4	        						|
+| 11/26           | Linear Programming I; exp4 Due; Declare exp5			 			|
+| 12/03           | Linear Programming II; Declare exp6								|
+| 12/10           | Linear Programming III (Simplex); exp5 Due						 	|
+| 12/17           | Dynamic Programming; exp6 Due      		              		 			|
+
+<!--
 
 | 上課時間        | 課程進度                                                             			|
 |-----------------|---------------------------------------------------------------------------------------------|
@@ -43,7 +69,6 @@ Watt, J., Borhani, R., Katsaggelos, A. K., 2020. Machine Learning Refined: Found
 | 12/19           | Dynamic Programming I         		              		 			|
 | 12/26           | Dynamic Programming II; exp6, exp7 Due                   		 			|
 
-<!--
 
 | 上課時間        | 課程進度                                            |
 |-----------------|-----------------------------------------------------|
