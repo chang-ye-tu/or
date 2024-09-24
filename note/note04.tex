@@ -1,0 +1,236 @@
+\documentclass[11pt]{extarticle} 
+\usepackage{unicode-math}
+\usepackage{mathrsfs}
+\usepackage{amsthm,graphicx,xcolor,natbib,enumitem,booktabs,tabularx}
+\usepackage[paperwidth=126mm, paperheight=96mm, top=5mm, bottom=5mm, right=5mm, left=5mm]{geometry}
+\pagenumbering{gobble}
+
+\usepackage[BoldFont,SlantFont]{xeCJK}  
+\xeCJKsetemboldenfactor{2}
+%\setCJKmainfont{cwTeX Q Kai Medium}
+%\setCJKmainfont{cwTeX Q Ming Medium}
+\setCJKmainfont{cwTeX Q Yuan Medium}
+%\usepackage[AutoFakeBold,AutoFakeSlant]{xeCJK}  
+%\setCJKmainfont[AutoFakeSlant=.1,AutoFakeBold=1]{cwTeX Q Kai Medium} 
+%\setCJKfamilyfont{kaiv}[Vertical=RotatedGlyphs]{cwTeX Q Medium}
+%\setmainfont{texgyrepagella-regular.otf}
+%\setmathfont{texgyrepagella-math.otf}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    linkcolor={red!50!black},
+    citecolor={blue!60!black},
+    urlcolor={blue!60!black}
+    %urlcolor={blue!80!black}
+}
+
+\newcommand{\ds}{\displaystyle}
+\newcommand{\ie}{\,\Longrightarrow\,}
+\newcommand{\ifff}{\,\Longleftrightarrow\,}
+\newcommand{\mi}{\mathrm{i}}
+\DeclareMathOperator*{\dom}{dom}
+\DeclareMathOperator*{\codom}{codom}
+\DeclareMathOperator*{\ran}{ran}
+\newcommand{\floor}[1]{\lfloor #1 \rfloor}
+\newcommand{\ceil}[1]{\lceil #1 \rceil}
+\newcommand{\Set}[2]{\big\{ \ #1\ \big|\ #2\ \big\}}
+\newcommand{\pdiff}[2]{\frac{\partial\hfil#1\hfil}{\partial #2}}
+\newcommand{\vx}{\symbfup{x}}
+\newcommand{\vd}{\symbfup{d}}
+\newcommand{\vg}{\symbfup{g}}
+\newcommand{\vH}{\symbfup{H}}
+\newcommand{\va}{\symbfup{a}}
+\newcommand{\vb}{\symbfup{b}}
+\newcommand{\vy}{\symbfup{y}}
+
+\DeclareMathOperator*{\argmax}{\arg\!\max}
+\DeclareMathOperator*{\argmin}{\arg\!\min}
+\DeclareMathOperator*{\im}{Im}
+\DeclareMathOperator*{\re}{Re}
+
+\theoremstyle{definition}
+\newtheorem*{dfn}{Definition}
+\newtheorem*{prp}{Property}
+\newtheorem*{thm}{Theorem}
+\newtheorem*{ex}{Example}
+\newtheorem*{sol}{Solution}
+\newtheorem*{prf}{Proof}
+
+\begin{document}
+\title{\texorpdfstring{\vspace{15mm} Operations Research\\ 04. Unconstrained Optimization, AD}{Operations Research\\ 04. Unconstrained Optimization, AD}} 
+\author{}
+\date{}
+\maketitle
+\newpage
+
+\section*{Descent Direction Iteration}
+
+Starting with a design point $\vx^{(1)}$ and generate a sequence of points $\{\vx^{(k)}\}$ to converge to a local minimum:
+\begin{itemize}
+  \item Check whether $\vx^{(k)}$ satisfies the termination conditions. If it does, terminate; otherwise proceed to the next step.
+  \item Determine the \emph{descent direction} $\vd^{(k)}$ using local info such as the gradient or Hessian.
+  \item Determine the \emph{step size} or \emph{learning rate} $\alpha^{(k)}$.
+  \item Compute the next point $\vx^{(k + 1)}$ according to 
+    \begin{align*}
+      \vx^{(k + 1)}\,\longleftarrow\, \vx^{(k)} + \alpha^{(k)}\,\vd^{(k)} 
+    \end{align*}
+\end{itemize}
+Each optimization methods has its own way of determining $\vd$ and $\alpha$.
+
+\newpage
+
+\section*{First Order Method}
+\begin{itemize}
+  \item $\ds\vg^{(k)} = \nabla f(\vx^{(k)})$, $\;\ds\vd^{(k)} = -\frac{\vg^{(k)}}{\|\vg^{(k)}\|}$
+  \item $\ds\alpha^{(k)} = \argmin_\alpha\,f(\vx^{(k)} + \alpha\,\vd^{(k)})$
+  \item The above optimization implies the directional derivative equals zero, i.e. 
+    \begin{align*}
+      \nabla f(\vx^{(k)} + \alpha\,\vd^{(k)})^\top\,\vd^{(k)} = 0
+    \end{align*}
+  \item We know that 
+    \begin{align*}
+      \vd^{(k + 1)} = -\frac{\nabla f(\vx^{(k)} + \alpha\,\vd^{(k)})}{\|\nabla f(\vx^{(k)} + \alpha\,\vd^{(k)})\|}
+    \end{align*}
+    Hence $\ds{\vd^{(k + 1)}}^\top\,\vd^{(k)} = 0$.
+\end{itemize}
+
+\newpage
+
+\section*{Second Order Method}
+
+Recall Newton's method of finding the root of $f(x) = 0$.
+\begin{itemize}
+  \item Given initial $x_0$
+  \item Update by $\ds x_{n + 1} = x_n - \frac{f(x_n)}{f'(x_n)}$; $\;n = 0, 1, 2, \ldots$
+\end{itemize}
+Apply to $f(x) = x^2 - a$, we have the {\tt Python} code:
+\begin{verbatim}
+  def mysqrt(a):
+      x = a
+      for i in range(100):
+          x -= (x ** 2 - a) / (2 * x) 
+      return x
+\end{verbatim}
+\newpage
+
+\begin{itemize}
+  \item To find the optimal value of $f(x)$, we are actually finding the critical points: the root of $f'(x) = 0$. So
+    \begin{itemize}
+      \item Given initial $x_0$
+      \item Update by $\ds x_{n + 1} = x_n - \frac{f'(x_n)}{f''(x_n)}$; $\;n = 0, 1, 2, \ldots$
+    \end{itemize}
+  \item Another viewpoint: the univariate second order Taylor expansion of $f(x)$ w.r.t. $x_n$ is 
+  \begin{align*}
+    f(x) \approx q(x) = f(x_n) + f'(x_n)(x - x_n) + \frac{1}{2}f''(x_n)(x - x_n)^2
+  \end{align*}
+  \item Evaluate the derivative and set to zero, we have
+    \begin{align*}
+      q'(x) = f'(x_n) + f''(x_n)(x - x_n) = 0
+    \end{align*}
+  \item Solve for the next iterate:
+    \begin{align*}
+      x_{n + 1} = x_n - \frac{f'(x_n)}{f''(x_n)}
+    \end{align*}
+\end{itemize}
+
+\newpage
+
+\begin{itemize}
+  \item The multivariate second order Taylor expansion of $f(\vx)$ w.r.t. $\vx^{(k)}$ is
+    \begin{multline*}
+      f(\vx)\approx q(\vx) = f(\vx^{(k)}) + {\vg^{(k)}}^\top(\vx - \vx^{(k)}) \\+ \frac{1}{2}(\vx - \vx^{(k)})^\top\vH^{(k)}(\vx - \vx^{(k)})
+    \end{multline*}
+    where $\vg^{(k)}$, $\vH^{(k)}$ are the local gradient and Hessian resp.
+  \item Evaluate the gradient and set to zero, we have
+    \begin{align*}
+      \nabla q(\vx) = {\vg^{(k)}} + \vH^{(k)}(\vx - \vx^{(k)}) = 0
+    \end{align*}
+  \item Solve for the next iterate:
+    \begin{align*}
+      \vx^{(k + 1)} = \vx^{(k)} - {\vH^{(k)}}^{-1}\vg^{(k)}  
+    \end{align*}
+\end{itemize}
+
+\newpage
+
+\subsection*{Numerical Differentiation: Finite Difference}
+
+$\ds f'(x)\approx\underbrace{\frac{f(x + h) - f(x)}{h}}_{\text{forward difference}}\approx\underbrace{\frac{f(x + \frac{h}{2}) - f(x - \frac{h}{2})}{h}}_{\text{central difference}}\approx\underbrace{\frac{f(x) - f(x - h)}{h}}_{\text{backward difference}}$
+
+\subsection*{Numerical Differentiation: Complex Step Method}
+
+\begin{itemize}
+  \item $\ds f(x + ih) = f(x) + ihf'(x) - h^2\frac{f''(x)}{2!} - ih^3\frac{f'''(x)}{3!} + \cdots$
+  \item Take the imaginary part: $\ds\im f(x + ih) = hf'(x) - h^3\frac{f'''(x)}{3!} + \cdots\ie f'(x) \approx \frac{\im f(x + ih)}{h} + \mathcal{O}(h^2)$ 
+  \item Take the real part: $\ds\re f(x + ih) = f(x) - h^2\frac{f''(x)}{2!} + \cdots\ie f(x) \approx\re f(x + ih) + \mathcal{O}(h^2)$ 
+\end{itemize}
+
+\newpage
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[scale=0.8,page=1]{fig/ndiff.pdf}
+  \caption{Evaluation of the numerical derivative of $\sin x$ at $x = \frac{1}{2}$ via different schemes as the step size $h$ is varied.}
+\end{figure}
+
+\newpage
+
+\section*{Automatic Differentiation (AD)}
+
+\begin{itemize}
+  \item References: \citet{naumann,griewank}
+  \item No round-off errors in numerical differentiation
+  \item NOT symbolic differentiation of computer algebra systems
+  \item Essential for modern computations; many implementations: e.g. \href{https://github.com/HIPS/autograd}{{\tt autograd}}, \href{https://github.com/google/jax}{{\tt JAX}}
+  \item Every computer calculation executes a sequence of elementary arithmetic operations ($+$, $-$, $\times$, $\div$, composite) and elementary functions (e.g. $\exp$, $\log$, $\sin$, $\cos$, etc.). 
+  \item Applying the chain rule repeatedly; partial derivatives of arbitrary order can be computed automatically
+  \item Accurately to working precision, and using at most a small constant factor of more arithmetic operations than the original program
+\end{itemize}
+
+\newpage
+
+\section*{Automatic Differentiation: A Sketch}
+
+\begin{ex}
+  Given $\ds z = x_1 x_2 + \sin(x_1)$, compute $\ds\frac{\partial z}{\partial x_1}$ and $\ds\frac{\partial z}{\partial x_2}$.
+\end{ex}
+
+\begin{sol}
+  Define 
+  \begin{align*}
+    w_1 &= x_1 \\
+    w_2 &= x_2 \\
+    w_3 &= w_1 w_2 \\
+    w_4 &= \sin(w_1) \\
+    w_5 &= w_3 + w_4 \\
+    z & = w_5
+  \end{align*}
+  Then $\ds\frac{\partial z}{\partial x_1} = \frac{\partial z}{\partial w_1} = \frac{\partial w_5}{\partial w_3}\frac{\partial w_3}{\partial w_1} + \frac{\partial w_5}{\partial w_4}\frac{\partial w_4}{\partial w_1} = w_2 + \cos(w_1) = x_2 + \sin x_1$, $\ds\frac{\partial z}{\partial x_2} = \frac{\partial z}{\partial w_2} = \frac{\partial w_5}{\partial w_3}\frac{\partial w_3}{\partial w_2} + \frac{\partial w_5}{\partial w_4}\frac{\partial w_4}{\partial w_2} = w_1 = x_1$. 
+\end{sol}
+
+\newpage
+
+\section*{Forward / Reverse Mode of AD}
+
+\begin{itemize}
+  \item The chain rule: to compute the Jacobian of an operation one should multiply the Jacobians of all sub-operations together
+  \item The difference between forward and reverse mode of AD is the \emph{order} in which one multiply those Jacobians
+  \item Let $\ds\vy = f(\vx) = r(q(p(\vx)))$ and $\va = p(\vx)$, $\vb = q(\va)$, $y = r(\vb)$; the Jacobian reads
+    \begin{align*}
+      \underbrace{\frac{\partial\vy}{\partial\vx}}_{|\vy|\times|\vx|} = \underbrace{\frac{\partial r(\vb)}{\partial\vb}}_{|\vy|\times|\vb|}\,\underbrace{\frac{\partial q(\va)}{\partial\va}}_{|\vb|\times|\va|}\,\underbrace{\frac{\partial p(\vx)}{\partial\vx}}_{|\va|\times|\vx|}
+    \end{align*}
+  \item The number of scalar multiplications required to multiply two matrices of sizes $\alpha\times\beta$ and $\beta\times\gamma$ is $\alpha\cdot\beta\cdot\gamma$
+  \item Forward mode: $\ds\frac{\partial\vy}{\partial\vx} = \frac{\partial r(\vb)}{\partial\vb}\,\Big(\frac{\partial q(\va)}{\partial\va}\,\frac{\partial p(\vx)}{\partial\vx}\Big)$, $\;\ds|\vb|\cdot|\va|\cdot|\vx| + |\vy|\cdot|\vb|\cdot|\vx|$ multiplications
+  \item Reverse mode: $\ds\frac{\partial\vy}{\partial\vx} = \Big(\frac{\partial r(\vb)}{\partial\vb}\,\frac{\partial q(\va)}{\partial\va}\Big)\,\frac{\partial p(\vx)}{\partial\vx}$, $\;\ds|\vy|\cdot|\vb|\cdot|\va| + |\vy|\cdot|\va|\cdot|\vx|$ multiplications
+  \item Assume $|\va| = |\vb|$. If $|\vy| > |\vx|$, forward mode involves fewer steps; else if $|\vy| < |\vx|$, reverse mode involves fewer steps
+\end{itemize}
+
+%\section*{Python Review}
+%\citet{beazley_dis,beazley_ess,cookbook,lerner}
+%Consult the \href{https://github.com/gto76/python-cheatsheet}{Comprehensive Python Cheat Sheet}
+
+\bibliographystyle{elsarticle-harv}
+\bibliography{note04}
+
+\end{document}

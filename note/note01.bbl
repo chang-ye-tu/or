@@ -1,0 +1,95 @@
+\begin{thebibliography}{12}
+\expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
+\providecommand{\url}[1]{\texttt{#1}}
+\providecommand{\href}[2]{#2}
+\providecommand{\path}[1]{#1}
+\providecommand{\DOIprefix}{doi:}
+\providecommand{\ArXivprefix}{arXiv:}
+\providecommand{\URLprefix}{URL: }
+\providecommand{\Pubmedprefix}{pmid:}
+\providecommand{\doi}[1]{\href{http://dx.doi.org/#1}{\path{#1}}}
+\providecommand{\Pubmed}[1]{\href{pmid:#1}{\path{#1}}}
+\providecommand{\bibinfo}[2]{#2}
+\ifx\xfnm\relax \def\xfnm[#1]{\unskip,\space#1}\fi
+%Type = Book
+\bibitem[{Ant{\~{a}}o(2023)}]{antao}
+\bibinfo{author}{Ant{\~{a}}o, T.}, \bibinfo{year}{2023}.
+\newblock \bibinfo{title}{Fast Python}.
+\newblock \bibinfo{publisher}{Shelter Island, NY}, \bibinfo{address}{Manning
+  Publications}.
+%Type = Book
+\bibitem[{Beazley(2009)}]{beazley_ess}
+\bibinfo{author}{Beazley, D.}, \bibinfo{year}{2009}.
+\newblock \bibinfo{title}{Python: Essential Reference}.
+\newblock \bibinfo{edition}{{4th}} ed., \bibinfo{publisher}{Addison-Wesley},
+  \bibinfo{address}{Upper Saddle River, NJ}.
+%Type = Book
+\bibitem[{Beazley(2022)}]{beazley_dis}
+\bibinfo{author}{Beazley, D.}, \bibinfo{year}{2022}.
+\newblock \bibinfo{title}{Python Distilled}.
+\newblock \bibinfo{publisher}{Addison-Wesley}, \bibinfo{address}{Boston}.
+%Type = Book
+\bibitem[{Beazley and Jones(2013)}]{cookbook}
+\bibinfo{author}{Beazley, D.}, \bibinfo{author}{Jones, B.},
+  \bibinfo{year}{2013}.
+\newblock \bibinfo{title}{Python Cookbook}.
+\newblock \bibinfo{edition}{{3rd}} ed., \bibinfo{publisher}{O'Reilly Media},
+  \bibinfo{address}{Sebastopol, CA}.
+%Type = Book
+\bibitem[{Bell(2018)}]{bell}
+\bibinfo{author}{Bell, A.}, \bibinfo{year}{2018}.
+\newblock \bibinfo{title}{Get Programming: Learn to Code with Python}.
+\newblock \bibinfo{publisher}{Shelter Island, NY}, \bibinfo{address}{Manning
+  Publications}.
+%Type = Book
+\bibitem[{Gorelick and Ozsvald(2020)}]{ozsvald}
+\bibinfo{author}{Gorelick, M.}, \bibinfo{author}{Ozsvald, I.},
+  \bibinfo{year}{2020}.
+\newblock \bibinfo{title}{High Performance Python: Practical Performant
+  Programming for Humans}.
+\newblock \bibinfo{edition}{{2nd}} ed., \bibinfo{publisher}{O'Reilly Media},
+  \bibinfo{address}{Sebastopol, CA}.
+%Type = Book
+\bibitem[{Lerner(2020)}]{lerner}
+\bibinfo{author}{Lerner, R.M.}, \bibinfo{year}{2020}.
+\newblock \bibinfo{title}{Python Workout: 50 Ten-Minute Exercises}.
+\newblock \bibinfo{publisher}{Shelter Island, NY}, \bibinfo{address}{Manning
+  Publications}.
+%Type = Book
+\bibitem[{Lubanovic(2020)}]{luba}
+\bibinfo{author}{Lubanovic, B.}, \bibinfo{year}{2020}.
+\newblock \bibinfo{title}{Introducing Python: Modern Computing in Simple
+  Packages}.
+\newblock \bibinfo{edition}{{2nd}} ed., \bibinfo{publisher}{O'Reilly Media},
+  \bibinfo{address}{Sebastopol, CA}.
+%Type = Book
+\bibitem[{Martelli et~al.(2023)Martelli, Ravenscroft, Holden and
+  McGuire}]{martelli}
+\bibinfo{author}{Martelli, A.}, \bibinfo{author}{Ravenscroft, A.},
+  \bibinfo{author}{Holden, S.}, \bibinfo{author}{McGuire, P.},
+  \bibinfo{year}{2023}.
+\newblock \bibinfo{title}{Python in a Nutshell: A Desktop Quick Reference}.
+\newblock \bibinfo{edition}{{4th}} ed., \bibinfo{publisher}{O'Reilly Media},
+  \bibinfo{address}{Sebastopol, CA}.
+%Type = Book
+\bibitem[{Matthes(2023)}]{matt}
+\bibinfo{author}{Matthes, E.}, \bibinfo{year}{2023}.
+\newblock \bibinfo{title}{Python Crash Course: A Hands-On, Project Based
+  Introduction to Programming}.
+\newblock \bibinfo{edition}{{3rd}} ed., \bibinfo{publisher}{No Starch Press},
+  \bibinfo{address}{San Francisco, CA}.
+%Type = Book
+\bibitem[{Ramalho(2022)}]{ramalho}
+\bibinfo{author}{Ramalho, L.}, \bibinfo{year}{2022}.
+\newblock \bibinfo{title}{Fluent Python: Clear, Concise, and Effective
+  Programming}.
+\newblock \bibinfo{edition}{{2nd}} ed., \bibinfo{publisher}{O'Reilly Media},
+  \bibinfo{address}{Sebastopol, CA}.
+%Type = Book
+\bibitem[{Slatkin(2020)}]{slatkin}
+\bibinfo{author}{Slatkin, B.}, \bibinfo{year}{2020}.
+\newblock \bibinfo{title}{Effective Python: 90 Specific Ways to Write Better
+  Python}.
+\newblock \bibinfo{publisher}{Addison-Wesley}, \bibinfo{address}{Boston}.
+
+\end{thebibliography}
