@@ -1,4 +1,4 @@
-\begin{thebibliography}{3}
+\begin{thebibliography}{4}
 \expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
 \providecommand{\url}[1]{\texttt{#1}}
 \providecommand{\href}[2]{#2}
@@ -12,22 +12,28 @@
 \providecommand{\bibinfo}[2]{#2}
 \ifx\xfnm\relax \def\xfnm[#1]{\unskip,\space#1}\fi
 %Type = Book
-\bibitem[{Apostol(1974)}]{apostol_adv}
-\bibinfo{author}{Apostol, T.M.}, \bibinfo{year}{1974}.
-\newblock \bibinfo{title}{Mathematical Analysis}.
-\newblock \bibinfo{edition}{{2nd}} ed., \bibinfo{publisher}{Addison-Wesley},
-  \bibinfo{address}{Boston}.
+\bibitem[{Beazley(2009)}]{beazley_ess}
+\bibinfo{author}{Beazley, D.}, \bibinfo{year}{2009}.
+\newblock \bibinfo{title}{Python: Essential Reference}.
+\newblock \bibinfo{edition}{{4th}} ed., \bibinfo{publisher}{Addison-Wesley},
+  \bibinfo{address}{Upper Saddle River, NJ}.
 %Type = Book
-\bibitem[{Rudin(1976)}]{rudin}
-\bibinfo{author}{Rudin, W.}, \bibinfo{year}{1976}.
-\newblock \bibinfo{title}{Principles of Mathematical Analysis}.
-\newblock \bibinfo{edition}{{3rd}} ed., \bibinfo{publisher}{McGraw-Hill},
-  \bibinfo{address}{New York}.
+\bibitem[{Beazley(2022)}]{beazley_dis}
+\bibinfo{author}{Beazley, D.}, \bibinfo{year}{2022}.
+\newblock \bibinfo{title}{Python Distilled}.
+\newblock \bibinfo{publisher}{Addison-Wesley}, \bibinfo{address}{Boston}.
 %Type = Book
-\bibitem[{Wade(2009)}]{wade}
-\bibinfo{author}{Wade, W.R.}, \bibinfo{year}{2009}.
-\newblock \bibinfo{title}{Introduction to Mathematical Analysis}.
-\newblock \bibinfo{edition}{{4th}} ed., \bibinfo{publisher}{Pearson},
-  \bibinfo{address}{Harlow, U.K.}
+\bibitem[{Beazley and Jones(2013)}]{cookbook}
+\bibinfo{author}{Beazley, D.}, \bibinfo{author}{Jones, B.},
+  \bibinfo{year}{2013}.
+\newblock \bibinfo{title}{Python Cookbook}.
+\newblock \bibinfo{edition}{{3rd}} ed., \bibinfo{publisher}{O'Reilly Media},
+  \bibinfo{address}{Sebastopol, CA}.
+%Type = Book
+\bibitem[{Lerner(2020)}]{lerner}
+\bibinfo{author}{Lerner, R.M.}, \bibinfo{year}{2020}.
+\newblock \bibinfo{title}{Python Workout: 50 Ten-Minute Exercises}.
+\newblock \bibinfo{publisher}{Shelter Island, NY}, \bibinfo{address}{Manning
+  Publications}.
 
 \end{thebibliography}

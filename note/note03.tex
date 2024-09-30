@@ -46,187 +46,37 @@
 \newtheorem*{prf}{Proof}
 
 \begin{document}
-\title{\texorpdfstring{\vspace{15mm} Operations Research\\ 03. Optimization \& Python Refresher}{Operations Research\\ 03. Optimization \& Python Refresher}} 
+\title{\texorpdfstring{\vspace{15mm} Operations Research\\ 03. Scientific Python Refresher}{Operations Research\\ 03. Scientific Python Refresher}} 
 \author{}
 \date{}
 \maketitle
 \newpage
 
-\section*{Optimization Refresher}
+\section*{Learning Resources}
 
-\begin{ex}
-  Let $w = f(x z, y z)$, where $f$ is a differentiable function. Prove that $\ds x\frac{\partial w}{\partial x} + y\frac{\partial w}{\partial y} = z\frac{\partial w}{\partial z}$.
-\end{ex}
-
-\begin{sol}
-  Write $u(x,y,z)=xz$ and $v(x,y,z)=yz$ so that $w(x,y,z) = f\big(u(x,y,z), v(x,y,z)\big)$. By the chain rule, 
-  \begin{align*}
-    \pdiff{w}{x}(x,y,z) &= \pdiff{}{x}\big[f \big(u(x,y,z), v(x,y,z)\big)\big] \\
-    &= \pdiff{f}{u}\big(u(x,y,z), v(x,y,z)\big)\pdiff{u}{x}(x,y,z) \\ 
-    &\quad + \pdiff{f}{v}\big(u(x,y,z), v(x,y,z)\big)\pdiff{v}{x}(x,y,z) \\ 
-    &= z\pdiff{f}{u}(xz, yz)
-  \end{align*}
-  \begin{align*}
-    \pdiff{w}{y}(x,y,z) &= \pdiff{}{y}\big[f \big(u(x,y,z), v(x,y,z)\big)\big] \\
-    &= \pdiff{f}{u}\big(u(x,y,z), v(x,y,z)\big)\pdiff{u}{y}(x,y,z) \\
-    &\quad +\pdiff{f}{v}\big(u(x,y,z), v(x,y,z)\big)\pdiff{v}{y}(x,y,z) \\
-    &= z\pdiff{f}{v}(xz, yz)
-  \end{align*}
-  \begin{align*}
-    \pdiff{w}{z}(x,y,z) &= \pdiff{}{z}\big[f \big(u(x,y,z), v(x,y,z)\big)\big] \\
-    &= \pdiff{f}{u}\big(u(x,y,z), v(x,y,z)\big)\pdiff{u}{z}(x,y,z) \\
-    &\quad +\pdiff{f}{v}\big(u(x,y,z), v(x,y,z)\big)\pdiff{v}{z}(x,y,z) \\
-    &= x\pdiff{f}{u}(xz, yz) + y\pdiff{f}{v}(xz, yz)
-  \end{align*}
-  
-  \begin{align*}
-    \text{So }\quad x\pdiff{w}{x} + y\pdiff{w}{y} &= xz\pdiff{f}{u}(xz, yz) + yz\pdiff{f}{v}(xz, yz) \\
-    &= z\left[x\pdiff{f}{u}(xz, yz) + y\pdiff{f}{v}(xz, yz)\right] = z\pdiff{w}{z}
-  \end{align*}
-\end{sol}
-
-\subsection*{The Chain Rule} 
-\begin{thm}[\citet{rudin} 9.15; \citet{apostol_adv} Theorem 12.7; \citet{wade} 11.28]
-  Suppose that $f$ and $g$ are vector functions. If $g$ is differentiable at $a$ and $f$ is differentiable at $g(a)$, then $f\circ g$ is differentiable at $a$ and  
-  \begin{align*}
-    D(f\circ g)(a) = Df(g(a))\,Dg(a)
-  \end{align*}
-\end{thm}
-
-\newpage
-\section*{Extreme Value Theorem}
-
-\begin{thm}[\citet{rudin} 4.16; \citet{apostol_adv} Theorem 4.27; \citet{wade} 9.57]
-  Suppose that $H$ is a nonempty subset of $\mathbb{R}^n$ and that $f: H\to\mathbb{R}$. If $H$ is compact and $f$ is continuous on $H$, then  
-  \begin{align*}
-    M = \sup\{f(x): x\in H\}\quad\text{ and }\quad m = \inf\{f(x): x\in H\}
-  \end{align*}
-  are finite real numbers. Moreover, there exists points $x_M, x_m\in H$ such that $M = f(x_M)$ and $m = f(x_m)$.
-\end{thm}
-
-\begin{itemize}
-  \item Extremum occurs on critical points (points that the gradients are zero), singular points (points with undefined gradients), and the boudary.
+\begin{itemize}\setlength{\itemsep}{0pt}
+  \item \href{https://www.dabeaz.com/}{David Beazley$^\star$}
+    \begin{itemize}
+      \item \citet{beazley_ess,cookbook,beazley_dis}
+      \item Online Courses
+        \begin{itemize}
+          \item \href{https://github.com/dabeaz-course/practical-python}{Practical Python Programming}
+          \item \href{https://github.com/dabeaz-course/python-mastery}{Advanced Python Mastery}
+        \end{itemize}
+    \end{itemize}
+  \item Cheat Sheets
+  \begin{itemize}%\setlength{\itemsep}{0pt}
+      \item \href{https://www.pythoncheatsheet.org/}{Python Cheat Sheet}
+      \item \href{https://github.com/gto76/python-cheatsheet}{Comprehensive Python Cheat Sheet}
+      \item \href{https://ipgp.github.io/scientific_python_cheat_sheet/}{Scientific Python Cheatsheet}
+      \item \href{https://s3.amazonaws.com/assets.datacamp.com/blog_assets/Numpy_Python_Cheat_Sheet.pdf}{``Python for Data Science'' Cheat Sheet: NumPy Basics}
+      \item \href{https://sebastianraschka.com/blog/2014/matrix_cheatsheet_table.html}{Sebastian Raschka$^\star$: Matrix Cheatsheet}
+      \item \href{https://ehmatthes.github.io/pcc_3e/cheat_sheets/}{Eric Mattes: Cheat Sheets}
+      \item \href{https://github.com/kieranholland/best-python-cheat-sheet}{The Best Python Cheat Sheet}
+    \end{itemize}
 \end{itemize}
 
 \newpage
-
-\begin{ex}
-  Find the maximum of $\ds f(x, y) = xy\,e^{-\frac{x^2 + y^2}{2}}$ on \\$\ds D\equiv\big\{(x, y)\,|\,x^2 + y^2\leqslant 4,\ x\geqslant 0,\ y\geqslant 0\big\}$. 
-\end{ex}
-
-\begin{sol}
-  The maximum must be either on the boundary of $D$ or in the interior of $D$.
-  \begin{itemize}
-    \item On the circular part of the boundary $r=2$, $0\leqslant\theta\leqslant\frac{\pi}{2}$ (in polar coordinates) so that $f=r^2\cos\theta\sin\theta e^{-r^2/2}=2\sin(2\theta)e^{-2}$. This has a maximum value of $2e^{-2}$ at $\theta=\frac{\pi}{4}$ or $x=y=\sqrt{2}$.
-    \item On the two flat parts of the boundary $x=0$ or $y=0$ so that $f=0$.  
-    \item If the maximum is in the interior of $D$, it must be at a critical point of $f(x,y)$. Since
-      \begin{align*}
-        f_x(x,y)=e^{-(x^2 + y^2) / 2}\big[y-x^2y\big]\qquad
-        f_y(x,y)=e^{-(x^2 + y^2) / 2}\big[x-xy^2\big]
-      \end{align*}
-      $(x,y)$ is a critical point if and only if
-      \begin{align*}
-        &y(1-x^2)=0\text{ and }x(1-y^2)=0 \\
-        &\iff \{y=0\text{ or }x=1\text{ or }x=-1\}\text{ and }
-             \{x=0\text{ or }y=1\text{ or }y=-1\}
-      \end{align*}
-      There are two critical points with $x,y\ge 0$, namely $(0,0)$ and $(1,1)$. 
-      The first of these is on the boundary of $D$ and the second is in the interior of $D$.
-  \end{itemize}
-  Here is a table giving all candidates for the maximum:
-  \begin{center}
-    \renewcommand{\arraystretch}{1.3}
-    \begin{tabular}{|c|c|}
-      \hline
-      $(x,y)$  & $g(x,y)$ \\ \hline
-      $(\sqrt{2},\sqrt{2})$ & $2e^{-2}$ \\ \hline
-      $(x,0)$ & $0$ \\ \hline
-      $(0,y)$ & $0$ \\ \hline
-      $(1,1)$ & $e^{-1}$ \\ \hline
-    \end{tabular}
-    \renewcommand{\arraystretch}{1.0}
-  \end{center}
-  Since $e>2$, we have that $2e^{-2}=e^{-1}\frac{2}{e}<e^{-1}$ and the largest value is $e^{-1}$.
-\end{sol}
-
-\newpage
-
-%\section*{Multivariable Differential Calculus}
-%\subsection*{The Directional Derivatives}
-%\subsection*{The Total Derivative}
-%\subsection*{The Total Derivative Expressed in Terms of Partial Derivatives}
-%\subsection*{The Matrix of a Linear Function}
-%\subsection*{The Jacobian Matrix}
-%\subsection*{The Chain Rule}
-%\subsection*{The Mean-Value Theorem for Differentiable Functions}
-%\subsection*{Taylor's Formula for Functions from $\mathbb{R}^n$ to $\mathbb{R}^1$}
-
-\section*{Lagrange Multipliers Method}
-
-\begin{thm}[\citet{apostol_adv} Theorem 13.12; \citet{wade} 11.63]
-  Let $m < n$, $V$ be open in $\mathbb{R}^n$, and $f$, $g_i:V\to\mathbb{R}$, $i = 1,\,2,\,\ldots,\,m$ be $C^1$ on $V$. Suppose that $\exists\,a\in V$ s.t. the Jacobian at $a$
-  \begin{align*}
-    \frac{\partial(g_1,\,g_2,\,\ldots,\,g_m)}{\partial (x_1,\,x_2,\,\ldots,\,x_{\!m})}(a) = 
-    \begin{vmatrix}
-      \frac{\partial g_1}{\partial x_1} & \frac{\partial g_1}{\partial x_2} & \cdots & \frac{\partial g_1}{\partial x_{\!m}} \\
-      \frac{\partial g_2}{\partial x_1} & \frac{\partial g_2}{\partial x_2} & \cdots & \frac{\partial g_2}{\partial x_{\!m}} \\
-      \vdots & \vdots & \ddots &\vdots \\
-      \frac{\partial g_m}{\partial x_1} & \frac{\partial g_m}{\partial x_2} & \cdots & \frac{\partial g_m}{\partial x_{\!m}}
-    \end{vmatrix}(a) \ne 0
-  \end{align*}
-  If $f(a)$ is a local extremum of $f$ subject to the constraints $g_i(a) = 0$, $i = 1, 2, \ldots, m$, then there exist scalars $\lambda_1,\,\lambda_2,\,\ldots,\,\lambda_m$ s.t.
-  \begin{align*}
-    \nabla f(a) + \sum_{i = 1}^m \lambda_i\nabla g_i(a) = 0
-  \end{align*}
-\end{thm}
-
-\newpage
-
-\begin{ex}
-  Find the optimum of $(x + z)\,e^y$ on $x^2 + y^2 + z^2 = 6$.
-\end{ex}
-  
-\begin{sol}
-  The objective is $f(x,y,z) = (x + z)e^y$ and the constraint is $g(x,y,z)=x^2 + y^2 + z^2 -6$, so
-  \begin{equation*}
-    f_x=e^y,\quad f_y=(x+z)e^y,\quad f_z=e^y,\quad g_x=2x,\quad g_y=2y,\quad g_z=2z
-  \end{equation*}
-  By the Lagrange multipliers method we should find all solutions to
-  \begin{align*}
-    e^y &= \lambda (2x) \tag{E1}\\
-    (x+z)e^y &= \lambda (2y)  \tag{E2}\\
-    e^y &= \lambda (2z) \tag{E3}\\
-    x^2 + y^2 + z^2 - 6 &= 0 \tag{E4}
-  \end{align*}
-  First notice that, since $e^y\ne 0$, equation (E1) guarantees that $\lambda\ne 0$ and $x\ne 0$ and equation (E3) guarantees that $z\ne 0$ too. 
-  \begin{itemize}
-    \item So dividing (E1) by (E3) gives $\ds\frac{x}{z}=1$ and hence $x=z$.
-    \item Then subbing $x=z$ into (E2) gives $2z e^y = \lambda(2y)$. Dividing this equation by (E3) gives $\ds 2z=\frac{y}{z}$ or $y=2z^2$.
-    \item Then subbing $x=z$ and $y=2z^2$ into (E4) gives $\ds z^2+4z^4+z^2-6=0 \iff 4z^4 +2z^2 -6 = 0 \iff (2z^2+3)(2z^2-2) =0$
-    \item As $2z^2+3>0$, we must have $2z^2-2=0$ or $z=\pm 1$.
-  \end{itemize}
-
-  Recalling that $x=z$ and $y=2z^2$, the Lagrange multipliers method gives that the only possible locations of the maximum and minimum of the function $f$ are $(1,2,1)$ and $(-1,2,-1)$. To complete the problem, we only have to compute $f$ at those points.
-  \begin{center}
-    \renewcommand{\arraystretch}{1.3}
-    \begin{tabular}{|c|c|c|}
-      \hline
-      point &$(1,2,1)$ &$(-1,2,-1)$ \\ 
-      \hline
-      value of $f$ &$2e^2$ &$-2e^2$ \\ 
-      \hline
-          & max  & min  \\ 
-      \hline
-    \end{tabular}
-  \renewcommand{\arraystretch}{1.0}
-  \end{center}
-  Hence the maximum value of $(x + z)e^y$ on $x^2 + y^2 + z^2 = 6$ 
-  is $2e^2$ and the minimum value is $-2 e^2$.
-\end{sol}
-
-\newpage
-
-\section*{Python Refresher}
 
 \begin{ex}
   In each of the followings, write an oneliner of {\tt Python} to complete the task. 
@@ -251,8 +101,6 @@
     \item {\tt ll = sorted(l, key=lambda x: sum(x), reverse=True)}
   \end{enumerate}
 \end{sol}
-
-Consult the \href{https://github.com/gto76/python-cheatsheet}{Comprehensive Python Cheat Sheet}
 
 \newpage
 
