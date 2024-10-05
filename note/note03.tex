@@ -54,10 +54,11 @@
 
 \section*{Learning Resources}
 
-\begin{itemize}\setlength{\itemsep}{0pt}
+\begin{itemize}\setlength{\itemsep}{-4pt}
   \item \href{https://www.dabeaz.com/}{David Beazley$^\star$}
+    \vspace{-2mm}
     \begin{itemize}
-      \item \citet{beazley_ess,cookbook,beazley_dis}
+      \item \citet{beazley_ess,beazley_dis,cookbook}
       \item Online Courses
         \begin{itemize}
           \item \href{https://github.com/dabeaz-course/practical-python}{Practical Python Programming}
@@ -65,22 +66,24 @@
         \end{itemize}
     \end{itemize}
   \item Cheat Sheets
-  \begin{itemize}%\setlength{\itemsep}{0pt}
-      \item \href{https://www.pythoncheatsheet.org/}{Python Cheat Sheet}
-      \item \href{https://github.com/gto76/python-cheatsheet}{Comprehensive Python Cheat Sheet}
-      \item \href{https://ipgp.github.io/scientific_python_cheat_sheet/}{Scientific Python Cheatsheet}
-      \item \href{https://s3.amazonaws.com/assets.datacamp.com/blog_assets/Numpy_Python_Cheat_Sheet.pdf}{``Python for Data Science'' Cheat Sheet: NumPy Basics}
-      \item \href{https://sebastianraschka.com/blog/2014/matrix_cheatsheet_table.html}{Sebastian Raschka$^\star$: Matrix Cheatsheet}
-      \item \href{https://ehmatthes.github.io/pcc_3e/cheat_sheets/}{Eric Mattes: Cheat Sheets}
-      \item \href{https://github.com/kieranholland/best-python-cheat-sheet}{The Best Python Cheat Sheet}
-    \end{itemize}
+    \vspace{-2mm}
+  \begin{itemize}
+    \item \href{https://www.pythoncheatsheet.org/}{Python Cheat Sheet}
+    \item \href{https://ipgp.github.io/scientific_python_cheat_sheet/}{Scientific Python Cheatsheet}
+    \item \href{https://s3.amazonaws.com/assets.datacamp.com/blog_assets/Numpy_Python_Cheat_Sheet.pdf}{``Python for Data Science'' Cheat Sheet: NumPy Basics}
+    \item \href{https://github.com/gto76/python-cheatsheet}{Comprehensive Python Cheat Sheet}
+    \item \href{https://sebastianraschka.com/blog/2014/matrix_cheatsheet_table.html}{Sebastian Raschka$^\star$: Matrix Cheatsheet}
+    \item \href{https://ehmatthes.github.io/pcc_3e/cheat_sheets/}{Eric Mattes: Cheat Sheets}
+    \item \href{https://github.com/kieranholland/best-python-cheat-sheet}{The Best Python Cheat Sheet}
+  \end{itemize}
+  \item \href{https://www.reddit.com/r/Python/comments/103i4d2/what_are_the_best_books_to_learn_python/}{A Reddit pointer} for best books on (project-based) Python
 \end{itemize}
 
 \newpage
 
 \begin{ex}
   In each of the followings, write an oneliner of {\tt Python} to complete the task. 
-  \begin{enumerate}
+  \begin{enumerate}\setlength{\itemsep}{-4pt}
     \item {\tt l = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h']} $\ie$ \\ {\tt ll = ['b', 'd', 'f', 'h']}
     \item {\tt l = [1, 2, 3, 4, 5]} $\ie$ {\tt ll = [1, 4, 9, 16, 25]}
     \item {\tt l = [2, 5, 5, -1, -1, -1]} $\ie$ {\tt ll = [2, 5, -1]}
@@ -89,10 +92,8 @@
   \end{enumerate}
 \end{ex}
  
-\newpage
-
 \begin{sol}
-  \begin{enumerate}[label=(\alph*)]
+  \begin{enumerate}[label=(\alph*)]\setlength{\itemsep}{-4pt}
     \item[]
     \item {\tt ll = l[1::2]}
     \item {\tt ll = [i**2 for i in l]}

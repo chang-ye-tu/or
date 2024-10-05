@@ -1,4 +1,4 @@
-\begin{thebibliography}{4}
+\begin{thebibliography}{3}
 \expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
 \providecommand{\url}[1]{\texttt{#1}}
 \providecommand{\href}[2]{#2}
@@ -29,11 +29,5 @@
 \newblock \bibinfo{title}{Python Cookbook}.
 \newblock \bibinfo{edition}{{3rd}} ed., \bibinfo{publisher}{O'Reilly Media},
   \bibinfo{address}{Sebastopol, CA}.
-%Type = Book
-\bibitem[{Lerner(2020)}]{lerner}
-\bibinfo{author}{Lerner, R.M.}, \bibinfo{year}{2020}.
-\newblock \bibinfo{title}{Python Workout: 50 Ten-Minute Exercises}.
-\newblock \bibinfo{publisher}{Shelter Island, NY}, \bibinfo{address}{Manning
-  Publications}.
 
 \end{thebibliography}
