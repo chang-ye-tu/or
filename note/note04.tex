@@ -198,6 +198,8 @@
 \maketitle
 \newpage
 
+%https://www.youtube.com/shorts/wlffDYJC0Z4?feature=share
+
 \section*{The Chain Rule}
 \begin{dfn}[The Jacobian]
   Let $V$ be open in $\mathbb{R}^n$, $\vx\in V$, and $g_i:V\to\mathbb{R}$, $i = 1,\,2,\,\ldots,\,m$ be $C^1$ on $V$. The Jacobian of $\vg(\vx): \mathbb{R}^n\to\mathbb{R}^m$ is defined as
@@ -283,7 +285,7 @@
   \begin{align*}
     g_j(t)\equiv f(c_1,\,c_2,\,\ldots,\,c_{j - 1},\,t,\,c_{j + 1},\,\ldots,\,c_n), \quad j = 1,\,2,\,\ldots,\,n 
   \end{align*}
-  For $f$ achieves extremum at $\vc$, $f(\vc) = g_j(c_j)$, $g_j$ achieves extremum at $c_j\ie g'(t)\,\big|_{t = c_j} = 0 \ie f_j(\vc) = 0\;\forall\,j$, so $\ds\nabla f(\vc) = \vZero$.  
+  For $f$ achieves extremum at $\vc$, $f(\vc) = g_j(c_j)$, $g_j$ achieves extremum at $c_j\ie g_j'(t)\,\big|_{t = c_j} = 0 \ie D_j f(\vc) = 0\;\forall\,j$, so $\ds\nabla f(\vc) = \vZero$.  
 \end{prf}
 
 \begin{thm}
@@ -314,12 +316,12 @@
 \end{dfn}
 
 \begin{dfn}[Matrix Positive/Negative Definiteness] 
-  Given an $n\times n$ real symmetric matrix $\vA$. For any $\ds\vv\in\mathbb{R}^n\ne\vZero$, if 
+  Given an $n\times n$ real symmetric matrix $\vA$. For any $\ds\vv\in\mathbb{R}^n\ne\vZero$, $\vA$ is
   \begin{itemize}%\setlength\itemsep{0em}
-    \item $\ds\vv\vA\vv^\top > 0$: $\vA$ is positive-definite
-    \item $\ds\vv\vA\vv^\top < 0$: $\vA$ is negative-definite
-    \item $\ds\vv\vA\vv^\top \geqslant 0$: $\vA$ is positive-semidefinite
-    \item $\ds\vv\vA\vv^\top \leqslant 0$: $\vA$ is negative-semidefinite
+    \item positive-definite: $\ds\vv\vA\vv^\top > 0$ 
+    \item negative-definite: $\ds\vv\vA\vv^\top < 0$
+    \item positive-semidefinite: $\ds\vv\vA\vv^\top\geqslant 0$
+    \item negative-semidefinite: $\ds\vv\vA\vv^\top\leqslant 0$
   \end{itemize}
 \end{dfn}
 
@@ -332,12 +334,12 @@
 \end{dfn}
 
 \begin{thm}[Criteria for Matrix Positive/Negative Definiteness] 
-  Given an $n\times n$ real symmetric matrix $\vA$, then $\forall\,k\leqslant n$, 
+  Given an $n\times n$ real symmetric matrix $\vA$, then $\forall\,k\leqslant n$, $\vA$ is 
   \begin{itemize}%\setlength\itemsep{0em}
-    \item $\vA$ is positive-definite $\ifff M_k > 0$
-    \item $\vA$ is negative-definite $\ifff (-1)^k M_k> 0$
-    \item $\vA$ is positive-semidefinite $\ifff \Delta_k \geqslant 0$
-    \item $\vA$ is negative-semidefinite $\ifff (-1)^k \Delta_k \geqslant 0$
+    \item positive-definite $\ifff M_k > 0$
+    \item negative-definite $\ifff (-1)^k M_k> 0$
+    \item positive-semidefinite $\ifff \Delta_k \geqslant 0$
+    \item negative-semidefinite $\ifff (-1)^k \Delta_k \geqslant 0$
   \end{itemize}
 \end{thm}
 
@@ -350,10 +352,10 @@
 \newpage
 
 \begin{thm}[Second Derivative Test]
-  Given $\ds S\subseteq\mathbb{R}^n$ and a differentiable function $\ds f:S\to\mathbb{R}$, and $f$ at an interior point $\vc$ of $S$ has $\ds\nabla f(\vc) = 0$. 
+  Given $\ds S\subseteq\mathbb{R}^n$ and a differentiable function $\ds f:S\to\mathbb{R}$, and $f$ at an interior point $\vc$ of $S$ has $\ds\nabla f(\vc) = 0$. If $\vH(f, \vc)$ is  
   \begin{itemize}%\setlength\itemsep{0em}
-    \item If $\vH(f, \vc)$ is positive-definite, then $f$ has a local minimum at $\vc$. 
-    \item If $\vH(f, \vc)$ is negative-definite, then $f$ has a local maximum at $\vc$. 
+    \item positive-definite $\ie$ $f$ has a local minimum at $\vc$. 
+    \item negative-definite $\ie$ $f$ has a local maximum at $\vc$. 
   \end{itemize}
 \end{thm}
 
@@ -375,7 +377,7 @@
   Find the critical points of $\ds f(x, y) = x^3 + xy^2 - 3x^2 - 4y^2 + 4$ and classify them. 
 \end{ex}
 
-\begin{sol} From $\ds f_x(x, y) = 3x^2 + y^2 - 6x$, $\ds f_y(x, y) = 2xy - 8y$, the critical points are $(x, y)$ that simultaneously satisfy these two equations being zero. Therefore $\ds\big\{3x^2 + y^2 - 6x = 0\big\} \orr \big\{y\,(x - 4) = 0\big\} \ie \big\{y = 0,\;3x^2 - 6x = 0\big\}\orr\big\{x = 4,\;3\cdot 4^2 + y^2 + 6\cdot 4 = 0\big\}$, So the critical points are $(0, 0)$, $(2, 0)$. Also $\ds f_{xx} = 6x - 6$, $\ds f_{yy} = 2x - 8$, $\ds f_{xy} = f_{yx} = 2y$, classified as follows: 
+\begin{sol} From $\ds f_x(x, y) = 3x^2 + y^2 - 6x$, $\ds f_y(x, y) = 2xy - 8y$, the critical points are $(x, y)$ that simultaneously satisfy these two equations being zero. Therefore $\ds\big\{3x^2 + y^2 - 6x = 0\big\}\andd\big\{y\,(x - 4) = 0\big\} \ie \big\{y = 0\andd 3x^2 - 6x = 0\big\}\orr\big\{x = 4\andd 3\cdot 4^2 + y^2 + 6\cdot 4 = 0\big\}$, So the critical points are $(0, 0)$, $(2, 0)$. Also $\ds f_{xx} = 6x - 6$, $\ds f_{yy} = 2x - 8$, $\ds f_{xy} = f_{yx} = 2y$, classified as follows: 
   \begin{center}
   %\renewcommand{\arraystretch}{1.3}
   \begin{tabular}{cccc}
@@ -396,7 +398,7 @@
 \end{ex}
 
 \begin{sol}
-  From $f_x(x, y) = y\,(5x+y-15)+xy\,(5) = y\,(5x+y-15)+y\,(5x) = y\,(10x+y-15)$, $\ds f_y(x, y) = x\,(5x+y-15) + xy\,(1) = x\,(5x+y-15)+ x\,(y) = x\,(5x+2y-15)$, the critical points are $(x, y)$ that simultaneously satisfy these two equations being zero. Therefore $\ds\big\{y=0 \orr 10x+y=15\big\} \orr \big\{x=0 \orr 5x+2y=15\big\} \ie \big\{y=0,\, x=0\big\}\orr\big\{y = 0,\ 5x+2y=15\big\}\orr\big\{10x+y=15,\ x=0\big\}\orr\big\{10x+y=15,\ 5x+2y=15\big\}$, So the critical points are $(0, 0)$, $(3, 0)$, $(0, 15)$, $(1,5)$. Also $\ds f_{xx} = 10 y$, $\ds f_{yy} = 2x$, $\ds f_{xy} = f_{yx} = 10x + 2y - 15$, classified as follows: 
+  From $f_x(x, y) = y\,(5x + y - 15) + xy\,(5) = y\,(5x + y - 15) + y\,(5x) = y\,(10x + y - 15)$, $\ds f_y(x, y) = x\,(5x + y - 15) + xy\,(1) = x\,(5x + y - 15)+ x\,(y) = x\,(5x + 2y - 15)$, the critical points are $(x, y)$ that simultaneously satisfy these two equations being zero. Therefore $\ds\big\{y = 0 \orr 10x + y - 15 = 0\big\} \andd \big\{x = 0 \orr 5x + 2y - 15 = 0\big\} \ie \big\{y = 0\andd x = 0\big\}\orr\big\{y = 0\andd 5x + 2y = 15\big\}\orr\big\{10x + y = 15\andd x = 0\big\}\orr\big\{10x + y = 15\andd 5x + 2y = 15\big\}$, So the critical points are $(0, 0)$, $(3, 0)$, $(0, 15)$, $(1,5)$. Also $\ds f_{xx} = 10 y$, $\ds f_{yy} = 2x$, $\ds f_{xy} = f_{yx} = 10x + 2y - 15$, classified as follows: 
   \begin{center}
   %\renewcommand{\arraystretch}{1.3}
   \begin{tabular}{cccc}
