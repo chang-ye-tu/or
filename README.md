@@ -37,18 +37,18 @@ Ruszczyński, A., 2006. Nonlinear Optimization. Princeton University Press, Prin
 | 09/10           | Orientation & Introduction; Placement Test                           			|
 | 09/24           | Jupyter Notebook: Markdown & LaTeX                                   			|
 | 10/01           | Scientific Python Refresher 			                 			|
-| 10/08           | Optimization Fundamentals; Declare exp1     	                 			|	 
-| 10/15           | Convex Sets & Functions; exp1 Due				              		        |
-| 10/22           | Convex Optimization Problems I; CVXPY I; Declare exp2					|
-| 10/29           | Convex Optimization Problems II; CVXPY II; Declare exp3			 		|
-| 11/05           | CVXPY III (DCP, GP); exp2 Due	        		         		 	|
-| 11/12           | Duality; Portfolio Optimization; exp3 Due				     	 		|
-| 11/19           | SVM; Neural Network; Declare exp4	        						|
-| 11/26           | Linear Programming I; Declare exp5					 			|
-| 12/03           | Linear Programming II; exp4 Due 								|
-| 12/10           | Linear Programming III (Simplex); exp5 Due; Declare exp6 				 	|
-| 12/17           | Dynamic Programming I      		 	             		 			|
-| 12/24           | Dynamic Programming II; exp6 Due     	              		 			|
+| 10/08           | Optimization Fundamentals                   	                 			|	 
+| 10/15           | Convex Sets & Functions					              		        |
+| 10/22           | Convex Optimization Problems I; CVXPY I                     				|
+| 10/29           | Convex Optimization Problems II; CVXPY II              			 		|
+| 11/05           | CVXPY III (DCP, GP); Linear Programming I        		         		 	|
+| 11/12           | Linear Programming II      					         	 		|
+| 11/19           | Linear Programming III; Duality; SVM	 						|
+| 11/26           | Heuristics; Neural Network		 				 			|
+| 12/03           | Application: Portfolio Optimization								|
+| 12/10           | Dynamic Programming	I	 								|
+| 12/17           | Dynamic Programming II   		 	             		 			|
+
 <!--
 
 | 上課時間        | 課程進度                                                             			|
