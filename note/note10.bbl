@@ -1,0 +1,73 @@
+\begin{thebibliography}{6}
+\expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
+\providecommand{\url}[1]{\texttt{#1}}
+\providecommand{\href}[2]{#2}
+\providecommand{\path}[1]{#1}
+\providecommand{\DOIprefix}{doi:}
+\providecommand{\ArXivprefix}{arXiv:}
+\providecommand{\URLprefix}{URL: }
+\providecommand{\Pubmedprefix}{pmid:}
+\providecommand{\doi}[1]{\href{http://dx.doi.org/#1}{\path{#1}}}
+\providecommand{\Pubmed}[1]{\href{pmid:#1}{\path{#1}}}
+\providecommand{\bibinfo}[2]{#2}
+\ifx\xfnm\relax \def\xfnm[#1]{\unskip,\space#1}\fi
+%Type = Inproceedings
+\bibitem[{Kidger and Lyons(2020)}]{Kidger2020}
+\bibinfo{author}{Kidger, P.}, \bibinfo{author}{Lyons, T.},
+  \bibinfo{year}{2020}.
+\newblock \bibinfo{title}{{Universal Approximation with Deep Narrow Networks}},
+  in: \bibinfo{editor}{Abernethy, J.}, \bibinfo{editor}{Agarwal, S.} (Eds.),
+  \bibinfo{booktitle}{Proceedings of Thirty Third Conference on Learning
+  Theory}, \bibinfo{publisher}{PMLR}. pp. \bibinfo{pages}{2306--2327}.
+\newblock \URLprefix \url{https://proceedings.mlr.press/v125/kidger20a.html}.
+%Type = Misc
+\bibitem[{Kingma and Ba(2017)}]{kingma2017adam}
+\bibinfo{author}{Kingma, D.P.}, \bibinfo{author}{Ba, J.}, \bibinfo{year}{2017}.
+\newblock \bibinfo{title}{Adam: A method for stochastic optimization}.
+\newblock \bibinfo{howpublished}{\url{https://arxiv.org/abs/1412.6980v9}}.
+\newblock \DOIprefix\doi{10.48550/ARXIV.1412.6980}.
+%Type = Article
+\bibitem[{Nemirovski et~al.(2009)Nemirovski, Juditsky, Lan and
+  Shapiro}]{nemirovski90}
+\bibinfo{author}{Nemirovski, A.}, \bibinfo{author}{Juditsky, A.},
+  \bibinfo{author}{Lan, G.}, \bibinfo{author}{Shapiro, A.},
+  \bibinfo{year}{2009}.
+\newblock \bibinfo{title}{Robust stochastic approximation approach to
+  stochastic programming}.
+\newblock \bibinfo{journal}{SIAM Journal on Optimization} \bibinfo{volume}{19},
+  \bibinfo{pages}{1574--1609}.
+\newblock \URLprefix \url{https://doi.org/10.1137/070704277},
+  \DOIprefix\doi{10.1137/070704277},
+  \href{http://arxiv.org/abs/https://doi.org/10.1137/070704277}{{\tt
+  arXiv:https://doi.org/10.1137/070704277}}.
+%Type = Article
+\bibitem[{Pinkus(1999)}]{Pinkus1999}
+\bibinfo{author}{Pinkus, A.}, \bibinfo{year}{1999}.
+\newblock \bibinfo{title}{Approximation theory of the mlp model in neural
+  networks}.
+\newblock \bibinfo{journal}{Acta Numerica} \bibinfo{volume}{8},
+  \bibinfo{pages}{143--195}.
+\newblock \DOIprefix\doi{10.1017/S0962492900002919}.
+%Type = Inproceedings
+\bibitem[{Wu et~al.(2018)Wu, Ma and E}]{WuSGD}
+\bibinfo{author}{Wu, L.}, \bibinfo{author}{Ma, C.}, \bibinfo{author}{E, W.},
+  \bibinfo{year}{2018}.
+\newblock \bibinfo{title}{How sgd selects the global minima in
+  over-parameterized learning: A dynamical stability perspective}, in:
+  \bibinfo{editor}{Bengio, S.}, \bibinfo{editor}{Wallach, H.},
+  \bibinfo{editor}{Larochelle, H.}, \bibinfo{editor}{Grauman, K.},
+  \bibinfo{editor}{Cesa-Bianchi, N.}, \bibinfo{editor}{Garnett, R.} (Eds.),
+  \bibinfo{booktitle}{Advances in Neural Information Processing Systems},
+  \bibinfo{publisher}{Curran Associates, Inc.}
+\newblock \URLprefix
+  \url{https://proceedings.neurips.cc/paper/2018/file/6651526b6fb8f29a00507de6a49ce30f-Paper.pdf}.
+%Type = Misc
+\bibitem[{Yarotsky and Zhevnerchuk(2019)}]{Yarotsky2021}
+\bibinfo{author}{Yarotsky, D.}, \bibinfo{author}{Zhevnerchuk, A.},
+  \bibinfo{year}{2019}.
+\newblock \bibinfo{title}{The phase diagram of approximation rates for deep
+  neural networks}.
+\newblock \bibinfo{howpublished}{\url{https://arxiv.org/abs/1906.09477}}.
+\newblock \DOIprefix\doi{10.48550/ARXIV.1906.09477}.
+
+\end{thebibliography}

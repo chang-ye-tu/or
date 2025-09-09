@@ -1,0 +1,129 @@
+\documentclass[11pt]{extarticle} 
+\usepackage{unicode-math}
+\usepackage{mathrsfs}
+\usepackage{amsthm,graphicx,xcolor,natbib,enumitem}
+\usepackage[paperwidth=126mm, paperheight=96mm, top=5mm, bottom=5mm, right=5mm, left=5mm]{geometry}
+\pagenumbering{gobble}
+
+\usepackage[BoldFont,SlantFont]{xeCJK}  
+\xeCJKsetemboldenfactor{2}
+\setCJKmainfont{cwTeX Q Yuan Medium}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    linkcolor={red!50!black},
+    citecolor={blue!60!black},
+    urlcolor={blue!60!black}
+    %urlcolor={blue!80!black}
+}
+
+\begin{document}
+\title{\texorpdfstring{\vspace{15mm} Operations Research\\ 01. Orientation and Introduction}{Operations Research\\ 01. Orientation and Introduction}}
+\author{}
+%\date{September 12, 2023}
+\date{}
+\maketitle
+\newpage
+
+%\section*{評分標準}
+%
+%學期總成績基本分為 75 分，可選擇執行以下項目加分：
+%\begin{itemize}[itemsep=0pt]
+%  \item 課前問卷 $1$ 次，滿分 $5$ 分，得分 $q$ 分
+%  \item 習題（理論）$a$ 次，各次滿分 $v_i$ 分，得分 $\alpha_i$ 分
+%  \item 習題（程式）$b$ 次，各次滿分 $w_j$ 分，得分 $\beta_j$ 分
+%  \item 考試（紙筆）$c$ 次，各次滿分 $x_k$ 分，得分 $\gamma_k$ 分
+%  \item 考試（程式）$d$ 次，各次滿分 $y_l$ 分，得分 $\delta_l$ 分
+%  \item 報告（書面 + 上台）$e$ 次，各次滿分 $z_m$ 分，得分 $\varepsilon_m$ 分
+%\end{itemize}
+%學期總成績最後分數為 $$75 + q + \sum_{i=1}^a\alpha_i + \sum_{j=1}^b\beta_j + \sum_{k=1}^c\gamma_k + \sum_{l=1}^d\delta_l + \sum_{m=1}^e\varepsilon_m$$ 超出 99 分以 99 分計。 
+%
+%\newpage
+%
+%\section*{加分項目說明}
+%
+%\begin{itemize}[itemsep=0pt]
+%  \item 課前問卷：機率、線性代數、微積分與 Python 基礎知識。
+%  \item 習題：理論習題或程式習題。
+%    \begin{itemize}
+%      \item 習題繳交後會公佈答案並完整檢討。
+%    \end{itemize}
+%  \item 考試：紙筆作答考試或程式考試。
+%    \begin{itemize}
+%      \item 紙筆作答考試內容為理論習題選輯，閉書考試。
+%      \item 程式考試必須在 48 小時內完成指定題目並寄回 Jupyter Notebook 檔案之答案。
+%    \end{itemize}
+%  \item 報告：事先選定主題之書面報告，佐以上台演示 15 分鐘及提問回答。
+%    \begin{itemize}
+%      \item 書面報告與投影片禁止使用 Word\textsuperscript{\textregistered} 與 PowerPoint\textsuperscript{\textregistered} 製作，必須使用課堂上講授之 \LaTeX{} 與 Markdown 語法配合製作 Jupyter Notebook 等開源格式文件。
+%    \end{itemize}
+%\end{itemize}
+%
+%\newpage
+%
+\section*{課程內容}
+
+\begin{itemize}[itemsep=0mm]
+  \item Convex Optimization
+    \vspace{-2mm}
+    \begin{itemize}
+      \item Convexity and Duality
+      \item Selected Algorithms
+    \end{itemize}
+  \item Linear Programming
+    \vspace{-2mm}
+    \begin{itemize}
+      \item Various Applications
+      \item Simplex Method
+    \end{itemize}
+  \item Sequential Decision Problems
+    \vspace{-2mm}
+    \begin{itemize}
+      \item Dynamic Programming 
+      \item Reinforcement Learning 
+    \end{itemize}
+  \item Jupyter Notebook: Markdown \& \LaTeX{}
+  \item Intermediate Scientific Python
+  \item CVXPY \& Applications （能否帶可執行計算之筆電來上課？）
+\end{itemize}
+
+\newpage
+
+\section*{Learning Python: Curated Resource List}
+\begin{itemize}
+  \item Novice 
+    \vspace{-2mm}
+    \begin{itemize}
+      \item \citet{bell,luba,matt}
+    \end{itemize}
+  \item Intermediate to Advanced 
+    \vspace{-2mm}
+    \begin{itemize}
+      \item \citet{ramalho,martelli,beazley_ess,cookbook,beazley_dis,slatkin}
+    \end{itemize}
+  \item High Performance Computing 
+    \vspace{-2mm}
+    \begin{itemize}
+      \item \citet{ozsvald,antao}
+    \end{itemize}
+  \item Miscellaneous
+    \vspace{-2mm}
+    \begin{itemize}
+      \item \citet{lerner}
+      \item \href{https://github.com/gto76/python-cheatsheet}{Comprehensive Python Cheat Sheet}
+      \item \href{https://github.com/rougier}{Nicholas P. Rougier} 
+        \vspace{-1mm}
+        \begin{itemize}
+          \item \href{https://www.labri.fr/perso/nrougier/from-python-to-numpy/}{From Python to NumPy}
+          \item \href{https://github.com/rougier/scientific-visualization-book}{Scientific \& Visualization: Python \& Matplotlib}
+        \end{itemize}
+    \end{itemize}
+\end{itemize}
+
+\newpage
+
+\bibliographystyle{elsarticle-harv}
+\bibliography{note01}
+
+\end{document}

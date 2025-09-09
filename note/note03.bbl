@@ -1,0 +1,33 @@
+\begin{thebibliography}{3}
+\expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
+\providecommand{\url}[1]{\texttt{#1}}
+\providecommand{\href}[2]{#2}
+\providecommand{\path}[1]{#1}
+\providecommand{\DOIprefix}{doi:}
+\providecommand{\ArXivprefix}{arXiv:}
+\providecommand{\URLprefix}{URL: }
+\providecommand{\Pubmedprefix}{pmid:}
+\providecommand{\doi}[1]{\href{http://dx.doi.org/#1}{\path{#1}}}
+\providecommand{\Pubmed}[1]{\href{pmid:#1}{\path{#1}}}
+\providecommand{\bibinfo}[2]{#2}
+\ifx\xfnm\relax \def\xfnm[#1]{\unskip,\space#1}\fi
+%Type = Book
+\bibitem[{Beazley(2009)}]{beazley_ess}
+\bibinfo{author}{Beazley, D.}, \bibinfo{year}{2009}.
+\newblock \bibinfo{title}{Python: Essential Reference}.
+\newblock \bibinfo{edition}{{4th}} ed., \bibinfo{publisher}{Addison-Wesley},
+  \bibinfo{address}{Upper Saddle River, NJ}.
+%Type = Book
+\bibitem[{Beazley(2022)}]{beazley_dis}
+\bibinfo{author}{Beazley, D.}, \bibinfo{year}{2022}.
+\newblock \bibinfo{title}{Python Distilled}.
+\newblock \bibinfo{publisher}{Addison-Wesley}, \bibinfo{address}{Boston}.
+%Type = Book
+\bibitem[{Beazley and Jones(2013)}]{cookbook}
+\bibinfo{author}{Beazley, D.}, \bibinfo{author}{Jones, B.},
+  \bibinfo{year}{2013}.
+\newblock \bibinfo{title}{Python Cookbook}.
+\newblock \bibinfo{edition}{{3rd}} ed., \bibinfo{publisher}{O'Reilly Media},
+  \bibinfo{address}{Sebastopol, CA}.
+
+\end{thebibliography}

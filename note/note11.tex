@@ -1,0 +1,897 @@
+\PassOptionsToPackage{table}{xcolor}
+
+\documentclass[usenames,dvipsnames,8pt]{beamer}%aspectratio=169]{beamer}
+\usepackage{booktabs}
+
+\usepackage{header100}
+\usepackage{nicefrac}
+
+\usepackage{etoolbox}
+\newbool{code}  % code
+
+\usepackage{tabularray}
+%\usepackage{array}
+%\newcolumntype{L}{>{\raggedleft}m{0.08\textwidth}}
+%\newcolumntype{C}{>{\centering}m{0.08\textwidth}}
+%\newcolumntype{R}{>{\raggedright}m{0.08\textwidth}}
+%\newcolumntype{E}{>{\raggedright\arraybackslash}m{0.08\textwidth}}
+
+%\booltrue{code}
+\ifbool{code}{
+\definecolor{bg}{rgb}{.95,.95,.95}
+\usepackage[cache=false]{minted}
+\renewcommand{\theFancyVerbLine}{\sffamily\textcolor[rgb]{0.5,0.5,1.0}{\scriptsize\oldstylenums{\arabic{FancyVerbLine}}}}
+}{}
+
+\makeatletter
+%see https://tex.stackexchange.com/questions/9722/why-am-i-getting-the-pgf-math-error-unknown-function-getargs
+\def\pgfmathmax#1#2{%
+%   \pgfmathparse{getargs(#1,#2)}%
+     \pgfmathparse{#1,#2}%
+    \expandafter\pgfmathmax@\expandafter{\pgfmathresult}%
+}
+\def\pgfmathmin#1#2{%
+    \pgfmathparse{#1,#2}%
+    \expandafter\pgfmathmin@\expandafter{\pgfmathresult}%
+}
+%see https://tex.stackexchange.com/questions/15435/how-do-i-use-pgfmathdeclarefunction-to-create-define-a-new-pgf-function
+\makeatother
+
+\usepackage{unicode-math}
+\usepackage[BoldFont,SlantFont]{xeCJK}  
+\xeCJKsetemboldenfactor{2}
+\setCJKmainfont{cwTeX Q Yuan Medium}
+%\setmainfont{texgyrepagella-regular.otf}
+%\setmathfont{texgyrepagella-math.otf}
+\usepackage{datetime2}
+
+\usepackage{enumitem}
+
+\usetheme{Madrid}
+\usecolortheme{beaver}
+
+% XXX https://tex.stackexchange.com/questions/216435/how-do-i-properly-label-the-figures-and-tables-in-beamer-in-share-latex
+\setbeamertemplate{caption}[numbered]{} % Number float-like environments
+
+\setbeamertemplate{footline}[text line]{%
+  %\parbox{\linewidth}{\vspace*{-8pt}
+  %\DTMnow\hfill\href{https://github.com/chang-ye-tu/or}{https://github.com/chang-ye-tu/or}\hfill
+  %\hyperlink{toc}{TOC} 
+  %~~ \insertframenumber / \inserttotalframenumber~~~~~~~~~}}
+}
+%\setbeamertemplate{navigation symbols}[only frame symbol]
+
+
+% white letters in enumerate bullet points
+%\definecolor{stupidblue}{RGB}{51,51,178}
+\setbeamercolor{item projected}{fg=white}%fg=blue,bg=red!75!black} % fg=white , bg=stupidblue
+\setbeamercolor{frametitle}{fg=black}
+% Block title color
+\setbeamercolor{block title}{fg=white}%fg=blue,bg=red!75!black} % white
+%\setbeamertemplate{item projected}[square]
+
+\definecolor{foo}{rgb}{.2,.2,.7}
+\AtBeginSection[]{
+  \begin{frame}
+  \vfill
+  \centering
+  \begin{beamercolorbox}[sep=8pt,center,shadow=true,rounded=true]{section page}
+    \usebeamerfont{title}%
+    {\color{foo} \insertsectionhead}\par%
+  \end{beamercolorbox}
+  \vfill
+  \end{frame}
+}
+
+% https://tex.stackexchange.com/questions/30423/bibliography-in-beamer
+\setbeamertemplate{bibliography entry title}{}
+\setbeamertemplate{bibliography entry location}{}
+\setbeamertemplate{bibliography entry note}{}
+
+\DeclareMathOperator\prb{{\sf P}}
+\DeclareMathOperator\expc{{\sf E}}
+\DeclareMathOperator\var{var}
+\DeclareMathOperator\cov{cov}
+\DeclareMathOperator*{\argmax}{\arg\!\max}
+\DeclareMathOperator*{\argmin}{\arg\!\min}
+\DeclareMathOperator\corr{corr}
+\DeclareMathOperator\rk{rank}
+\DeclareMathOperator\sgn{sgn}
+
+\usepackage{dsfont} % indicator function \mathds{1}
+\DeclareMathOperator\indc{\mathds{1}}
+
+\renewcommand{\ds}{\displaystyle}
+\newcommand{\ie}{\,\Longrightarrow\,}
+
+\setbeamertemplate{headline}{}
+\title{Operations Research\\ 11. The Simplex Method. Dual of Linear Program}
+\author{}%Chang-Ye Tu}
+\date{}
+
+\begin{document}
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}
+  \frametitle{The Simplex Method: A Demonstration}
+  \begin{center}
+    {\color{C2}An iterative process starting with suboptimal solution and stopping at a feasible solution which cannot be improved} 
+  \end{center}
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      \begin{align*}
+        \text{maximize}\quad    &5 x_1 + 4 x_2 + 3 x_3 \\
+        \text{subject to}\quad  &2 x_1 + 3 x_2 + x_3 \leqslant 5 \\
+                                &4 x_1 + x_2 + 2 x_3 \leqslant 11 \\
+                                &3 x_1 + 4 x_2 + 2 x_3 \leqslant 8 \\
+                                &x_1\geqslant 0,\,\,x_2\geqslant 0,\,\,x_3\geqslant 0
+      \end{align*}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \begin{table}[ht]
+        \centering
+        \setlength\tabcolsep{2pt}
+        \begin{tabular}{lrrrcrcrcr}
+          \toprule
+          maximize   &$\zeta$& = &   & $+$ & 5 $x_1$ & $+$ & 4 $x_2$ & $+$ & 3 $x_3$ \\
+          \midrule
+          subject to & $w_1$ & = & 5 & $-$ & 2 $x_1$ & $-$ & 3 $x_2$ & $-$ & 1 $x_3$ \\
+                     & $w_2$ & = &11 & $-$ & 4 $x_1$ & $-$ & 1 $x_2$ & $-$ & 2 $x_3$ \\
+                     & $w_3$ & = & 8 & $-$ & 3 $x_1$ & $-$ & 4 $x_2$ & $-$ & 2 $x_3$ \\ 
+          \bottomrule
+        \end{tabular}
+      \end{table}
+      \vspace{-0.4cm}
+      \begin{align*}
+        x_1,\;x_2,\;x_3,\;w_1,\;w_2,\;w_3\geqslant 0
+      \end{align*}
+    \end{column}
+  \end{columns}
+  \vspace{0.5cm}
+  \begin{align*}
+    \text{Turn inequalities to equalities: add nonnegative slack variables $w_1$, $w_2$, $w_3$} \\
+  \end{align*}
+\end{frame}
+
+\begin{frame}
+  \frametitle{The Simplex Method: A Demonstration (Cont'd)}
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      \begin{table}[ht]
+        \centering
+        \setlength\tabcolsep{2pt}
+        \begin{tabular}{lrrrcrcrcr}
+          \toprule
+          maximize   &$\zeta$& = &   &\cellcolor{C2}\color{white} $+$ &\cellcolor{C2}\color{white} 5 $x_1$ & $+$ & 4 $x_2$ & $+$ & 3 $x_3$ \\
+          \midrule
+          subject to & $w_1$ & = & 5 & $-$ & 2 $x_1$ & $-$ & 3 $x_2$ & $-$ & 1 $x_3$ \\
+                     & $w_2$ & = &11 & $-$ & 4 $x_1$ & $-$ & 1 $x_2$ & $-$ & 2 $x_3$ \\
+                     & $w_3$ & = & 8 & $-$ & 3 $x_1$ & $-$ & 4 $x_2$ & $-$ & 2 $x_3$ \\ 
+          \bottomrule
+        \end{tabular}
+      \end{table}
+      \vspace{-0.4cm}
+      \begin{align*}
+        x_1,\;x_2,\;x_3,\;w_1,\;w_2,\;w_3\geqslant 0
+      \end{align*}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \begin{table}[ht]
+        \centering
+        \setlength\tabcolsep{2pt}
+        \begin{tabular}{rrcrcrcrcr}
+          \toprule
+          maximize   &$\zeta$& = &$\frac{25}{2}$ & $-$ & $\frac{5}{2}$ $w_1$ & $-$ & $\frac{7}{2}$ $x_2$ & $+$ & $\frac{1}{2}$ $x_3$\\
+          \midrule
+          subject to & $x_1$ & = & $\frac{5}{2}$ & $-$ & $\frac{1}{2}$ $w_1$ & $-$ & $\frac{3}{2}$ $x_2$ & $-$ & $\frac{1}{2}$ $x_3$\\
+                     & $w_2$ & = &   1 & $+$ & 2   $w_1$ & $+$ & 5   $x_2$ &   &  \\
+                     & $w_3$ & = & $\frac{1}{2}$ & $+$ & $\frac{3}{2}$ $w_1$ & $+$ & $\frac{1}{2}$ $x_2$ & $-$ & $\frac{1}{2}$ $x_3$\\ 
+          \bottomrule
+        \end{tabular}
+      \end{table}
+      \vspace{-0.4cm}
+      \begin{align*}
+        x_1,\;x_2,\;x_3,\;w_1,\;w_2,\;w_3\geqslant 0
+      \end{align*}
+    \end{column}
+  \end{columns}
+  \begin{align*}
+    &\text{1st step: take }\;{\color{red}x_1 = 0,\;x_2 = 0,\; x_3 = 0},\;\text{ then }\;w_1 = 5,\;w_2 = 11,\;w_3 = 8 \\
+    &{\color{C2}\text{Find in $\zeta$ the variable with the greatest positive coefficient: here $+5 x_1$}} \\
+    &\text{Increase $x_1$ and keep $x_2 = x_3 = 0$;\quad Note the constraints $w_1,\,w_2,\,w_3\geqslant 0$.} \\
+    &w_1 = 5-2x_1\geqslant 0\;\Longrightarrow\; x_1\leqslant\frac{5}{2};\quad w_2 = 11-4x_1\geqslant 0\;\Longrightarrow\; x_1\leqslant\frac{11}{4};\quad w_3 = 8-3x_1\geqslant 0\;\Longrightarrow\; x_1\leqslant\frac{8}{3}\\
+    &\text{2nd step: take }\;{\color{red}x_1 = \frac{5}{2},\; x_2 = 0,\; x_3 = 0},\;\text{ then }\;w_1 = 0,\;w_2 = 1,\;w_3 = \frac{1}{2}\\
+    &{\color{C2}\text{Swap the roles of $x_1$ and $w_1$,\;\text{ then the first constraint becomes }\;$x_1 = \frac{5}{2} - \frac{1}{2}w_1-\frac{3}{2} x_2-\frac{1}{2}x_3$ }} \\
+    &{\color{C2}\text{Rewrite all other constraints and $\zeta$ with $x_1 = \frac{5}{2} - \frac{1}{2}w_1-\frac{3}{2} x_2-\frac{1}{2}x_3$ }} 
+  \end{align*}
+\end{frame}
+
+\begin{frame}
+  \frametitle{The Simplex Method: A Demonstration (Cont'd)}
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      \begin{table}[ht]
+        \centering
+        \setlength\tabcolsep{2pt}
+        \begin{tabular}{rrcrcrcrcr}
+          \toprule
+          maximize   &$\zeta$& = &$\frac{25}{2}$ & $-$ & $\frac{5}{2}$ $w_1$ & $-$ & $\frac{7}{2}$ $x_2$ & \cellcolor{C2}\color{white} $+$ & \cellcolor{C2}\color{white} $\frac{1}{2}$ $x_3$\\
+          \midrule
+          subject to & $x_1$ & = & $\frac{5}{2}$ & $-$ & $\frac{1}{2}$ $w_1$ & $-$ & $\frac{3}{2}$ $x_2$ & $-$ & $\frac{1}{2}$ $x_3$\\
+                     & $w_2$ & = &   1 & $+$ & 2   $w_1$ & $+$ & 5   $x_2$ &   &  \\
+                     & $w_3$ & = & $\frac{1}{2}$ & $+$ & $\frac{3}{2}$ $w_1$ & $+$ & $\frac{1}{2}$ $x_2$ & $-$ & $\frac{1}{2}$ $x_3$\\ 
+          \bottomrule
+        \end{tabular}
+      \end{table}
+      \vspace{-0.4cm}
+      \begin{align*}
+        x_1,\;x_2,\;x_3,\;w_1,\;w_2,\;w_3\geqslant 0
+      \end{align*}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \begin{table}[ht]
+        \centering
+        \setlength\tabcolsep{2pt}
+        \begin{tabular}{rrcrcrcrcr}
+          \toprule
+          maximize   &$\zeta$& = & 13 & $-$ & 1 $w_1$ & $-$ & 3 $x_2$ & $-$ & 1 $w_3$ \\
+          \midrule
+          subject to & $x_1$ & = &  2 & $-$ & 2 $w_1$ & $-$ & 2 $x_2$ & $+$ & 1 $w_3$ \\
+                     & $w_2$ & = &  1 & $+$ & 2 $w_1$ & $+$ & 5 $x_2$ &   &         \\
+                     & $x_3$ & = &  1 & $+$ & 3 $w_1$ & $+$ & 1 $x_2$ & $-$ & 2 $w_3$ \\ 
+          \bottomrule
+        \end{tabular}
+      \end{table}
+      \vspace{-0.4cm}
+      \begin{align*}
+        x_1,\;x_2,\;x_3,\;w_1,\;w_2,\;w_3\geqslant 0
+      \end{align*}
+    \end{column}
+  \end{columns}
+  \begin{align*}
+    &{\color{C2}\text{Find in $\zeta$ the variable with the greatest positive coefficient: here $+\frac{1}{2} x_3$}} \\
+    &\text{Increase $x_3$ and keep $w_1 = x_2 = 0$;\quad Note the constraints $x_1,\,w_3\geqslant 0$.} \\
+    &x_1 = \frac{5}{2}-\frac{1}{2}x_3\geqslant 0\;\Longrightarrow\; x_3\leqslant 5;\quad w_3 = \frac{1}{2}-\frac{1}{2}x_3\geqslant 0\;\Longrightarrow\; x_3\leqslant 1\\
+    &\text{3rd step: take }\;{\color{red}x_1 = 2,\; x_2 = 0,\; x_3 = 1},\;\text{ then }\;w_1 = 0,\;w_2 = 1,\;w_3 = 0\\
+    &{\color{C2}\text{Swap the roles of $x_3$ and $w_3$,\;\text{ then the last constraint becomes }\;$x_3 = 1 + 3 w_1 + x_2 - 2 w_3$ }} \\
+    &{\color{C2}\text{Rewrite all other constraints and $\zeta$ with $x_3 = 1 + 3 w_1 + x_2-2 w_3$}}\\ 
+    &{\color{red}\text{Now $\zeta$ has no variable with positive coefficient;\; stop.\;$\max\zeta = 13$ with $x_1 = 2,\; x_2 = 0,\; x_3 = 1$.}} 
+  \end{align*}
+\end{frame}
+
+\begin{frame}
+  \frametitle{The Simplex Method: Another Example}
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      \begin{align*}
+        \text{maximize}\quad    &2 x_1 + 3 x_2 + 4 x_3\\
+        \text{subject to}\quad  &2 x_2 + 3 x_3 \leqslant 5\\
+                                &x_1 + x_2 + 2 x_3 \leqslant 4\\
+                                &x_1 + 2 x_2 + 3 x_3 \leqslant 7\\
+                                &x_1\geqslant 0,\,\,x_2\geqslant 0,\,\,x_3\geqslant 0
+      \end{align*}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \begin{table}[ht]
+        \centering
+        \setlength\tabcolsep{2pt}
+        \begin{tabular}{lrrrcrcrcr}
+          \toprule
+          maximize   &$\zeta$& = &   & $+$ & 2 $x_1$ & $+$ & 3 $x_2$ & $+$ & 4 $x_3$ \\
+          \midrule
+          subject to & $w_1$ & = & 5 &  &  & $-$ & 2 $x_2$ & $-$ & 3 $x_3$ \\
+                     & $w_2$ & = & 4 & $-$ & 1 $x_1$ & $-$ & 1 $x_2$ & $-$ & 2 $x_3$ \\
+                     & $w_3$ & = & 7 & $-$ & 1 $x_1$ & $-$ & 2 $x_2$ & $-$ & 3 $x_3$ \\ 
+          \bottomrule
+        \end{tabular}
+      \end{table}
+      \vspace{-0.4cm}
+      \begin{align*}
+        x_1,\;x_2,\;x_3,\;w_1,\;w_2,\;w_3\geqslant 0
+      \end{align*}
+    \end{column}
+  \end{columns}
+  \vspace{0.5cm}
+  \begin{align*}
+    \text{Turn inequalities to equalities: add nonnegative slack variables $w_1$, $w_2$, $w_3$} \\
+  \end{align*}
+\end{frame}
+
+\begin{frame}
+  \frametitle{The Simplex Method: Another Example (Cont'd)}
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      \begin{table}[ht]
+        \centering
+        \setlength\tabcolsep{2pt}
+        \begin{tabular}{lrrrcrcrcr}
+          \toprule
+          maximize   &$\zeta$& = &   & $+$ & 2 $x_1$ & $+$ & 3 $x_2$ &\cellcolor{C2}\color{white}  $+$ &\cellcolor{C2}\color{white}  4 $x_3$ \\
+          \midrule
+          subject to & $w_1$ & = & 5 &  &  & $-$ & 2 $x_2$ & $-$ & 3 $x_3$ \\
+                     & $w_2$ & = & 4 & $-$ & 1 $x_1$ & $-$ & 1 $x_2$ & $-$ & 2 $x_3$ \\
+                     & $w_3$ & = & 7 & $-$ & 1 $x_1$ & $-$ & 2 $x_2$ & $-$ & 3 $x_3$ \\ 
+          \bottomrule
+        \end{tabular}
+      \end{table}
+      \vspace{-0.4cm}
+      \begin{align*}
+        x_1,\;x_2,\;x_3,\;w_1,\;w_2,\;w_3\geqslant 0
+      \end{align*}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \begin{table}[ht]
+        \centering
+        \setlength\tabcolsep{2pt}
+        \begin{tabular}{rrcrcrcrcr}
+          \toprule
+          maximize   &$\zeta$& = & $\frac{20}{3}$ & $+$ & 2 $x_1$ & $+$ & $\frac{1}{3}$ $x_2$ & $-$ & $\frac{4}{3}$ $w_1$ \\
+          \midrule
+          subject to & $x_3$ & = & $\frac{5}{3}$ &     &           & $-$ & $\frac{2}{3}$ $x_2$ & $-$ & $\frac{1}{3}$ $w_1$ \\ 
+                     & $w_2$ & = & $\frac{2}{3}$ & $-$ & 1   $x_1$ & $+$ & $\frac{1}{3}$ $x_2$ & $+$ & $\frac{2}{3}$ $w_1$ \\
+                     & $w_3$ & = & 2 & $-$ & 1 $x_1$ &  &  & $+$ & 1 $w_1$ \\
+          \bottomrule
+        \end{tabular}
+      \end{table}
+      \vspace{-0.4cm}
+      \begin{align*}
+        x_1,\;x_2,\;x_3,\;w_1,\;w_2,\;w_3\geqslant 0
+      \end{align*}
+    \end{column}
+  \end{columns}
+  \begin{align*}
+    &\text{1st step: take }\;{\color{red}x_1 = 0,\;x_2 = 0,\; x_3 = 0},\;\text{ then }\;w_1 = 5,\;w_2 = 4,\;w_3 = 7 \\
+    &{\color{C2}\text{Find in $\zeta$ the variable with the greatest positive coefficient: here $+4\,x_3$}} \\
+    &\text{Increase $x_3$ and keep $x_1 = x_2 = 0$;\quad Note the constraints $w_1,\,w_2,\,w_3\geqslant 0$.} \\
+    &w_1 = 5-3x_3\geqslant 0\;\Longrightarrow\; x_3\leqslant\frac{5}{3};\quad w_2 = 4-2x_3\geqslant 0\;\Longrightarrow\; x_3\leqslant 2;\quad w_3 = 7-3x_3\geqslant 0\;\Longrightarrow\; x_3\leqslant\frac{7}{3}\\
+    &\text{2nd step: take }\;{\color{red}x_1 = 0,\; x_2 = 0,\; x_3 = \frac{5}{3}},\;\text{ then }\;w_1 = 0,\;w_2 = \frac{2}{3},\;w_3 = 2\\
+    &{\color{C2}\text{Swap the roles of $x_3$ and $w_1$,\;\text{ then the first constraint becomes }\;$x_3 = \frac{5}{3}- \frac{2}{3} x_2 - \frac{1}{3}w_1$ }} \\
+    &{\color{C2}\text{Rewrite all other constraints and $\zeta$ with $x_3 = \frac{5}{3} - \frac{2}{3} x_2 - \frac{1}{3}w_1$}} 
+  \end{align*}
+\end{frame}
+
+\begin{frame}
+  \frametitle{The Simplex Method: Another Example (Cont'd)}
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      \begin{table}[ht]
+        \centering
+        \setlength\tabcolsep{2pt}
+        \begin{tabular}{rrcrcrcrcr}
+          \toprule
+          maximize   &$\zeta$& = & $\frac{20}{3}$ &\cellcolor{C2}\color{white}  $+$ &\cellcolor{C2}\color{white}  2 $x_1$ & $+$ & $\frac{1}{3}$ $x_2$ & $-$ & $\frac{4}{3}$ $w_1$ \\
+          \midrule
+          subject to & $x_3$ & = & $\frac{5}{3}$ &     &           & $-$ & $\frac{2}{3}$ $x_2$ & $-$ & $\frac{1}{3}$ $w_1$ \\ 
+                     & $w_2$ & = & $\frac{2}{3}$ & $-$ & 1   $x_1$ & $+$ & $\frac{1}{3}$ $x_2$ & $+$ & $\frac{2}{3}$ $w_1$ \\
+                     & $w_3$ & = & 2 & $-$ & 1 $x_1$ &  &  & $+$ & 1 $w_1$ \\
+          \bottomrule
+        \end{tabular}
+      \end{table}
+      \vspace{-0.4cm}
+      \begin{align*}
+        x_1,\;x_2,\;x_3,\;w_1,\;w_2,\;w_3\geqslant 0
+      \end{align*}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \begin{table}[ht]
+        \centering
+        \setlength\tabcolsep{2pt}
+        \begin{tabular}{rrcrcrcrcr}
+          \toprule
+          maximize   &$\zeta$& = &  8 & $-$ & 2 $w_2$ & $+$ & 1 $x_2$ &  &  \\
+          \midrule
+          subject to & $x_3$ & = & $\frac{5}{3}$ &     &           & $-$ & $\frac{2}{3}$ $x_2$ & $-$ & $\frac{1}{3}$ $w_1$ \\ 
+                     & $x_1$ & = & $\frac{2}{3}$ & $-$ & 1   $w_2$ & $+$ & $\frac{1}{3}$ $x_2$ & $+$ & $\frac{2}{3}$ $w_1$ \\
+                     & $w_3$ & = & $\frac{4}{3}$ & $+$ & 1 $w_2$ & $-$ & $\frac{1}{3}$ $x_2$ & $+$ & $\frac{1}{3}$ $w_1$ \\
+          \bottomrule
+        \end{tabular}
+      \end{table}
+      \vspace{-0.4cm}
+      \begin{align*}
+        x_1,\;x_2,\;x_3,\;w_1,\;w_2,\;w_3\geqslant 0
+      \end{align*}
+    \end{column}
+  \end{columns}
+  \begin{align*}
+    &{\color{C2}\text{Find in $\zeta$ the variable with the greatest positive coefficient: here $+2 x_1$}} \\
+    &\text{Increase $x_1$ and keep $x_2 = w_1 = 0$;\quad Note the constraints $w_2,\,w_3\geqslant 0$.} \\
+    &w_2 = \frac{2}{3}-1x_1\geqslant 0\;\Longrightarrow\; x_1\leqslant\frac{2}{3};\quad w_3 = 2-1x_1\geqslant 0\;\Longrightarrow\; x_1\leqslant 2\\
+    &\text{3rd step: take }\;{\color{red}x_1 = \frac{2}{3},\; x_2 = 0,\; x_3 = \frac{5}{3}},\;\text{ then }\;w_1 = 0,\;w_2 = 0,\;w_3 = \frac{4}{3}\\
+    &{\color{C2}\text{Swap the roles of $x_1$ and $w_2$,\;\text{ then the second constraint becomes }\;$x_1 = \frac{2}{3} -  w_2 + \frac{1}{3}x_2 + \frac{2}{3} w_1$}} \\
+    &{\color{C2}\text{Rewrite all other constraints and $\zeta$ with $x_1 = \frac{2}{3} -  w_2 + \frac{1}{3}x_2 + \frac{2}{3} w_1$}} 
+  \end{align*}
+\end{frame}
+
+\begin{frame}
+  \frametitle{The Simplex Method: Another Example (Cont'd)}
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      \begin{table}[ht]
+        \centering
+        \setlength\tabcolsep{2pt}
+        \begin{tabular}{rrcrcrcrcr}
+          \toprule
+          maximize   &$\zeta$& = &  8 & $-$ & 2 $w_2$ &\cellcolor{C2}\color{white}  $+$ &\cellcolor{C2}\color{white}  1 $x_2$ &  &  \\
+          \midrule
+          subject to & $x_3$ & = & $\frac{5}{3}$ &     &           & $-$ & $\frac{2}{3}$ $x_2$ & $-$ & $\frac{1}{3}$ $w_1$ \\ 
+                     & $x_1$ & = & $\frac{2}{3}$ & $-$ & 1   $w_2$ & $+$ & $\frac{1}{3}$ $x_2$ & $+$ & $\frac{2}{3}$ $w_1$ \\
+                     & $w_3$ & = & $\frac{4}{3}$ & $+$ & 1 $w_2$ & $-$ & $\frac{1}{3}$ $x_2$ & $+$ & $\frac{1}{3}$ $w_1$ \\
+          \bottomrule
+        \end{tabular}
+      \end{table}
+      \vspace{-0.4cm}
+      \begin{align*}
+        x_1,\;x_2,\;x_3,\;w_1,\;w_2,\;w_3\geqslant 0
+      \end{align*}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \begin{table}[ht]
+        \centering
+        \setlength\tabcolsep{2pt}
+        \begin{tabular}{rrcrcrcrcr}
+          \toprule
+          maximize   &$\zeta$& = & $\frac{21}{2}$ & $-$ & 2 $w_2$ & $-$ & $\frac{3}{2}$ $x_3$ & $-$ & $\frac{1}{2}$ $w_1$ \\
+          \midrule
+          subject to & $x_2$ & = & $\frac{5}{2}$ &     &           & $-$ & $\frac{3}{2}$ $x_3$ & $-$ & $\frac{1}{2}$ $w_1$ \\ 
+                     & $x_1$ & = & $\frac{3}{2}$ & $-$ & 1 $w_2$ & $-$ & $\frac{1}{2}$ $x_3$ & $+$ & $\frac{1}{2}$ $w_1$ \\
+                     & $w_3$ & = & $\frac{1}{2}$ & $+$ & 1 $w_2$ & $+$ & $\frac{1}{2}$ $x_3$ & $+$ & $\frac{1}{2}$ $w_1$ \\
+          \bottomrule
+        \end{tabular}
+      \end{table}
+      \vspace{-0.4cm}
+      \begin{align*}
+        x_1,\;x_2,\;x_3,\;w_1,\;w_2,\;w_3\geqslant 0
+      \end{align*}
+    \end{column}
+  \end{columns}
+  \begin{align*}
+    &{\color{C2}\text{Find in $\zeta$ the variable with the greatest positive coefficient: here $+1 x_2$}} \\
+    &\text{Increase $x_2$ and keep $w_1, w_2 = 0$;\quad Note the constraints $x_3,\,w_3\geqslant 0$.} \\
+    &x_3 = \frac{5}{3}-\frac{2}{3}x_2\geqslant 0\;\Longrightarrow\; x_2\leqslant\frac{5}{2};\quad w_3 = \frac{4}{3}-\frac{1}{3}x_2\geqslant 0\;\Longrightarrow\; x_2\leqslant 4\\
+    &\text{3rd step: take }\;{\color{red}x_1 = \frac{3}{2},\; x_2 = \frac{5}{2},\; x_3 = 0},\;\text{ and }\;w_1 = 0,\;w_2 = 0,\;w_3 = \frac{1}{2}\\
+    &{\color{C2}\text{Swap the roles of $x_2$ and $x_3$,\;\text{ then the first constraint becomes }\;$x_2 = \frac{5}{2} - \frac{3}{2} x_3 - \frac{1}{2} w_1$}} \\
+    &{\color{C2}\text{Rewrite all other constraints and $\zeta$ with $x_2 = \frac{5}{2} - \frac{3}{2} x_3 - \frac{1}{2} w_1$}}\\
+    &{\color{red}\text{Now $\zeta$ has no variable with positive coefficient;\; stop.\;$\max\zeta = \frac{21}{2}$ with $x_1 = \frac{3}{2},\; x_2 = \frac{5}{2},\; x_3 = 0$.}} 
+  \end{align*}
+\end{frame}
+
+\begin{frame}
+  \frametitle{The Simplex Method: A Formal Introduction}
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      \vspace{-9mm}
+      \begin{itemize}
+        \item LP in standard form: 
+          \begin{align*}
+            \text{maximize}  \quad&\sum_{j=1}^n c_j x_j \\
+            \text{subject to}\quad&\sum_{j=1}^n a_{ij}x_j\leqslant b_i,\quad i = 1, 2, \ldots, m\\
+                                  &x_j\geqslant 0, \quad j= 1, 2, \ldots, n 
+          \end{align*}
+        \item Introduce slack variables $w_i$, $i=1,2,\ldots,m$ and $\zeta$ for the objective function value: 
+          \begin{align*}
+            \zeta &= \sum_{j=1}^n c_j x_j \\
+            w_i   &= b_i - \sum_{j=1}^n a_{ij}x_j,\quad i = 1, 2, \ldots, m
+          \end{align*}
+      \end{itemize}
+    \end{column}
+    \hspace{-3mm}
+    \begin{column}{0.5\textwidth}
+      \begin{table}[ht]
+        \centering
+        \setlength\tabcolsep{2pt}
+        \begin{tabular}{rrcrcrcrcr}
+          \toprule
+          maximize   &$\zeta$& = &$\frac{25}{2}$ & $-$ & $\frac{5}{2}$ $w_1$ & $-$ & $\frac{7}{2}$ $x_2$ & $+$ & $\frac{1}{2}$ $x_3$\\
+          \midrule
+          subject to & $x_1$ & = & $\frac{5}{2}$ & $-$ & $\frac{1}{2}$ $w_1$ & $-$ & $\frac{3}{2}$ $x_2$ & $-$ & $\frac{1}{2}$ $x_3$\\
+                     & $w_2$ & = &   1 & $+$ & 2   $w_1$ & $+$ & 5   $x_2$ &   &  \\
+                     & $w_3$ & = & $\frac{1}{2}$ & $+$ & $\frac{3}{2}$ $w_1$ & $+$ & $\frac{1}{2}$ $x_2$ & $-$ & $\frac{1}{2}$ $x_3$\\ 
+          \bottomrule
+        \end{tabular}
+      \end{table}
+      \begin{itemize}
+        \item dictionary
+        \item basic variables (lhs): $x_1$, $w_2$, $w_3$ 
+        \item nonbasic variables (rhs): $w_1$, $x_2$, $x_3$
+        \item entering variable: the variable $\text{nonbasic}\;\Longrightarrow\;\text{basic}$
+        \item leaving variable: the variable $\text{basic}\;\Longrightarrow\;\text{nonbasic}$
+        \item rename $(x_1,\,x_2,\,\ldots,\,x_n,\,w_1,\,w_2,\,\ldots,\,w_m)$ $\Longrightarrow$ $(x_1,\,x_2,\,\ldots,\,x_n,\,x_{n+1},\,x_{n+2},\,\ldots,\,x_{n+m})$, so 
+          \begin{align*}
+            x_{n+i} = b_i - \sum_{j=1}^n a_{ij}x_j,\quad i = 1, 2, \ldots, m
+          \end{align*}
+      \end{itemize}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}
+  \frametitle{The Simplex Method: A Formal Introduction (Cont'd)}
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      \vspace{-5mm}
+      \begin{itemize}
+        \item The starting dictionary
+          \begin{align*}
+            \zeta   &= \sum_{j=1}^n c_j x_j \\
+            x_{n+i} &= b_i - \sum_{j=1}^n a_{ij}x_j,\quad i = 1, 2, \ldots, m
+          \end{align*}
+        \item Each dictionary has $m$ basic variables and $n$ nonbasic variables
+        \item $\mathcal{B}$: subset from $\{1,\,2,\,\ldots,\,n+m\}$ that of the basic variables
+        \item $\mathcal{N}$: subset from $\{1,\,2,\,\ldots,\,n+m\}$ that of the nonbasic variables
+        \item Initially $\mathcal{N} = \{1,\,2,\,\ldots,\,n\}$ and $\mathcal{B} = \{n+1,\,n+2,\,\ldots,\,n+m\}$
+      \end{itemize}
+    \end{column}
+    \hspace{-7mm}
+    \begin{column}{0.5\textwidth}
+      \begin{itemize}
+        \item The current dictionary is of the form 
+          \begin{align*}
+            \zeta &= \overline{\zeta} + \sum_{j\in\mathcal{N}} \overline{c_j} x_j \\
+            x_i   &= \overline{b_i} - \sum_{j\in\mathcal{N}}\overline{a_{ij}}x_j,\quad i\in\mathcal{B}
+          \end{align*}
+        \item The entering variable is chosen to increase $\zeta$: pick $k\in\{j\in\mathcal{N}: \overline{c_j} > 0\}$. If no such $k$, then the current solution is optimal.
+        \item The leaving variable is chosen to preserve nonnegativity of the current basic variables, so 
+          \begin{align*}
+            x_i = \overline{b_i} - \overline{a_{ik}}x_k\;\Longrightarrow\; \overline{b_i} - \overline{a_{ik}}x_k\geqslant 0,\quad i\in\mathcal{B} 
+          \end{align*}
+        \item The rule for selecting leaving variable: pick $l\in\{i\in\mathcal{B}: \overline{a_{ik}} > 0\;\wedge\;\frac{\overline{b_i}}{\overline{a_{ik}}}\text{ is minimal}\}$ 
+      \end{itemize}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}
+  \frametitle{The Simplex Method: Case of Negative RHS}
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      \begin{itemize}
+        \item Previously in standard form LP 
+          \begin{align*}
+            \text{maximize}  \quad&\sum_{j=1}^n c_j x_j \\
+            \text{subject to}\quad&\sum_{j=1}^n a_{ij}x_j\leqslant b_i,\quad i = 1, 2, \ldots, m\\
+                                  &x_j\geqslant 0, \quad j= 1, 2, \ldots, n 
+          \end{align*}
+          We assume {\color{C2} $b_i\geqslant 0$, $\forall\,i = 1,\,2,\,\ldots,\,m$}.
+        \item If not the case, then consider the auxiliary problem
+          \begin{align*}
+            \text{maximize}  \quad&-x_0 \\
+            \text{subject to}\quad&\sum_{j=1}^n a_{ij}x_j - x_0\leqslant b_i,\quad i = 1, 2, \ldots, m\\
+                                  &x_j\geqslant 0, \quad j= 0, 1, 2, \ldots, n 
+          \end{align*}
+      \end{itemize}
+    \end{column}
+    \hspace{-7mm}
+    \begin{column}{0.5\textwidth}
+      \begin{itemize}
+        \item The original problem has a feasible solution iff the optimal solution of the auxiliary problem is zero.
+        \item First try to convert the initial infeasible dictionary with into a feasible one by one pivot of the ``most infeasible variable''.
+        \item Proceed with the usual simplex steps.
+        \item Discard all $x_0$ terms; reintroduce the original objective with the substituted nonbasic variables.
+        \item An example: 
+          \begin{align*}
+            \text{maximize}\quad    &-2 x_1 - x_2\\
+            \text{subject to}\quad  &-x_1 + x_2 \leqslant -1\\
+                                    &-x_1 - 2 x_2 \leqslant -2\\
+                                    &x_2 \leqslant 1\\
+                                    &x_1\geqslant 0,\,\,x_2\geqslant 0
+          \end{align*}
+      \end{itemize}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}
+  \frametitle{The Simplex Method: Case of Negative RHS (Cont'd)}
+  \begin{columns}
+    \begin{column}{0.45\textwidth}
+      \begin{itemize}
+        \item The original problem:
+          \begin{align*}
+            \text{maximize}\quad    &-2 x_1 - x_2\\
+            \text{subject to}\quad  &-x_1 + x_2 \leqslant -1\\
+                                    &-x_1 - 2 x_2 \leqslant -2\\
+                                    &x_2 \leqslant 1\\
+                                    &x_1\geqslant 0,\;x_2\geqslant 0
+          \end{align*}
+        \item The auxiliary problem:
+          \begin{align*}
+            \text{maximize}\quad    &-x_0\\
+            \text{subject to}\quad  &-x_1 + x_2 - x_0\leqslant -1\\
+                                    &-x_1 - 2 x_2 - x_0 \leqslant -2\\
+                                    &x_2 - x_0\leqslant 1\\
+                                    &x_1\geqslant 0,\;x_2\geqslant 0,\;x_0\geqslant 0
+          \end{align*}
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.55\textwidth}
+      \begin{itemize}
+        \item Setup the initial infeasible dictionary:
+          \vspace{0.1cm}
+          \begin{table}[ht]
+            \centering
+            \setlength\tabcolsep{2pt}
+            \begin{tabular}{lrrrcrcrcr}
+              \toprule
+              maximize   &$\zeta$& = &   &  &  &  & & $-$ & 1 $x_0$ \\
+              \midrule
+              subject to & $w_1$ & = & $-1$ & $+$ & 1 $x_1$ & $-$ & 1 $x_2$ & $+$ & 1 $x_0$ \\
+                         & \cellcolor{C2}\color{white}$w_2$ & = & $-2$ & $+$ & 1 $x_1$ & $+$ & 2 $x_2$ & $+$ & 1 $x_0$\\
+                         & $w_3$ & = & $1$ & & & $-$ & 1 $x_2$ & $+$ & 1 $x_0$ \\ 
+              \bottomrule
+            \end{tabular}
+          \end{table}
+          \vspace{-0.4cm}
+          \begin{align*}
+            x_1,\;x_2,\;x_0,\;w_1,\;w_2,\;w_3\geqslant 0
+          \end{align*}
+        \item The ``most infeasible variable'' is $w_2$; Substitute $x_0$ with $w_2 + 2 - x_1 - x_2$:  
+          \vspace{0.1cm}
+          \begin{table}[ht]
+            \centering
+            \setlength\tabcolsep{2pt}
+            \begin{tabular}{lrrrcrcrcr}
+              \toprule
+              maximize   &$\zeta$& = & $-2$ & $+$ & 1 $x_1$ & $+$ & 2 $x_2$ & $-$ & 1 $w_2$ \\
+              \midrule
+              subject to & $w_1$ & = & $1$ &  & & $-$ & 3 $x_2$ & $+$ & 1 $w_2$ \\
+                         & $x_0$ & = & $2$ & $-$ & 1 $x_1$ & $-$ & 2 $x_2$ & $+$ & 1 $w_2$\\
+                         & $w_3$ & = & $3$ & $-$ & 1 $x_1$ & $-$ & 3 $x_2$ & $+$ & 1 $w_2$ \\ 
+              \bottomrule
+            \end{tabular}
+          \end{table}
+          \vspace{-0.4cm}
+          \begin{align*}
+            x_1,\;x_2,\;x_0,\;w_1,\;w_2,\;w_3\geqslant 0
+          \end{align*}
+      \end{itemize}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}
+  \frametitle{The Simplex Method: Case of Negative RHS (Cont'd)}
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      \begin{itemize}
+        \item Proceed with ordinary simplex method:  
+          \vspace{0.1cm}
+          \begin{table}[ht]
+            \centering
+            \setlength\tabcolsep{2pt}
+            \begin{tabular}{lrrrcrcrcr}
+              \toprule
+              maximize   &$\zeta$& = & $0$ & $-$ & 1 $x_0$ &  &  &  &  \\
+              \midrule
+              subject to & $x_2$ & = & $\frac{1}{3}$ &  & & $-$ & $\frac{1}{3}\,w_1$ & $+$ & $\frac{1}{3}\;w_2$ \\
+                         & $x_1$ & = & $\frac{4}{3}$ & $-$ & 1 $x_0$ & $+$ & $\frac{2}{3}\;w_1$ & $+$ & $\frac{1}{3}\;w_2$\\
+                         & $w_3$ & = & $\frac{2}{3}$ & $+$ & 1 $x_0$ & $+$ & $\frac{1}{3}\;w_1$ & $-$ &$\frac{1}{3}\;w_2$ \\ 
+              \bottomrule
+            \end{tabular}
+          \end{table}
+          \vspace{-0.4cm}
+          \begin{align*}
+            x_1,\;x_2,\;x_0,\;w_1,\;w_2,\;w_3\geqslant 0
+          \end{align*}
+        \item Discard all $x_0$ terms; Reintroduce the original objective 
+          \begin{align*}
+            \text{maximize}\quad -2 x_1 - x_2 \;\equiv\; -3 - w_1 - w_2 
+          \end{align*}
+          with the substituted nonbasic variables 
+          \begin{align*}
+            x_1 &= \frac{4}{3} + \frac{2}{3}w_1 + \frac{1}{3} w_2\\
+            x_2 &= \frac{1}{3} - \frac{1}{3}w_1 + \frac{1}{3} w_2
+          \end{align*}
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \vspace{-16mm}
+      \begin{itemize}
+        \item Combine the auxiliary dictionary with the substituted original object, we have the dictionary  
+          \vspace{0.1cm}
+          \begin{table}[ht]
+            \centering
+            \setlength\tabcolsep{2pt}
+            \begin{tabular}{lrrrcrcr}
+              \toprule
+              maximize   &$\zeta$& = & $-3$ & $-$ & 1 $w_1$ & $-$ & 1 $w_2$ \\
+              \midrule
+              subject to & $x_2$ & = & $\frac{1}{3}$ & $-$ & $\frac{1}{3}\,w_1$ & $+$ & $\frac{1}{3}\;w_2$ \\
+                         & $x_1$ & = & $\frac{4}{3}$ & $+$ & $\frac{2}{3}\;w_1$ & $+$ & $\frac{1}{3}\;w_2$\\
+                         & $w_3$ & = & $\frac{2}{3}$ & $+$ & $\frac{1}{3}\;w_1$ & $-$ &$\frac{1}{3}\;w_2$ \\ 
+              \bottomrule
+            \end{tabular}
+          \end{table}
+          \vspace{-0.4cm}
+          \begin{align*}
+            x_1,\;x_2,\;w_1,\;w_2,\;w_3\geqslant 0
+          \end{align*}
+        \item This is the final form, for the coefficients of all nonbasic variables are negative.
+        \item The final maximum of the original problem is $-3$.
+      \end{itemize}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}
+  \frametitle{The Simplex Method: Exercises}
+  Using \href{https://vanderbei.princeton.edu/JAVA/pivot/simple.html}{Simple Pivot Tool} to find the extrema of the following LP problems:
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      \begin{align*}
+        \text{maximize}\quad    &6 x_1 + 8 x_2 + 5 x_3 + 9 x_4\\
+        \text{subject to}\quad  &2 x_1 + x_2 + x_3 + 3 x_4 \leqslant 5\\
+                                &x_1 + 3 x_2 + x_3 + 2 x_4\leqslant 3\\
+                                &x_1,\;x_2,\;x_3,\;x_4\geqslant 0 \\
+                                & \\
+        \text{maximize}\quad    &3 x_1 + 2 x_2 + 4 x_3\\
+        \text{subject to}\quad  &x_1 + x_2 + 2 x_3\leqslant 4\\
+                                &2x_1 + 3 x_3\leqslant 5\\
+                                &2 x_1 + x_2 + 3 x_3\leqslant 7\\
+                                &x_1,\;x_2,\;x_3\geqslant 0\\
+                                & \\
+        \text{maximize}\quad    &5 x_1 + 5 x_2 + 3 x_3\\
+        \text{subject to}\quad  &x_1 + 3 x_2 + x_3\leqslant 3\\
+                                &-x_1 + 3 x_3\leqslant 2\\
+                                &2 x_1 - x_2 + 2 x_3\leqslant 4\\
+                                &2 x_1 + 3 x_2 - x_3\leqslant 2\\
+                                &x_1,\;x_2,\;x_3\geqslant 0
+      \end{align*}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \begin{align*}
+        \text{maximize}\quad    &- x_1 - 3 x_2 - x_3\\
+        \text{subject to}\quad  &2 x_1 - 5 x_2 + x_3 \leqslant -5\\
+                                &2 x_1 - x_2 + 2 x_3 \leqslant 4\\
+                                &x_1,\;x_2,\;x_3\geqslant 0\\
+                                & \\
+        \text{maximize}\quad    &5 x_1 + 6 x_2 + 9 x_3 + 8 x_4\\
+        \text{subject to}\quad  &x_1 + 2 x_2 + 3 x_3 + x_4 \leqslant 5\\
+                                &x_1 + x_2 + 2 x_3 + 3 x_4 \leqslant 3\\
+                                &x_1,\;x_2,\;x_3,\;x_4\geqslant 0 \\
+                                & \\
+                                & \\
+        \text{minimize}\quad    &x_1 + 8 x_2 + 9 x_3 + 2 x_4 + 7 x_5 + 3 x_6\\
+        \text{subject to}\quad  &x_1 + x_2 + x_3\geqslant 1\\
+                                &-x_1 + x_4 + x_5 = 0\\
+                                &-x_2 - x_4 + x_6 = 0\\
+                                &x_3 + x_5 + x_6\leqslant 1\\
+                                &x_1,\;x_2,\;x_3,\;x_4,\;x_5,\;x_6\geqslant 0
+      \end{align*}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}
+  \frametitle{The Dual of Linear Program}
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      %\vspace{-4mm}
+      \begin{itemize}
+        \item LP in standard form: 
+          \begin{align}
+            \text{maximize}  \quad& x_1 + 2 x_2 + x_3 + x_4 \nonumber\\
+            \text{subject to}\quad& x_1 + 2 x_2 + x_3 \leqslant 2 \label{eq1}\\
+                                  & x_2 + x_4 \leqslant 1 \label{eq2} \\
+                                  & x_1 + 2 x_3 \leqslant 1 \label{eq3} \\
+                                  & x_j\geqslant 0, \quad j= 1,\,\ldots,\,4 \nonumber 
+          \end{align}
+        \item Suppose the LP-solver find an ``optimal'' solution
+          $\ds x_1 = 1$, $\ds x_2 = \frac{1}{2}$, $\ds x_3 = 0$, $\ds x_4 = \frac{1}{2}$ with maximum $\ds\frac{5}{2}$, how can we check this?
+      \end{itemize}
+    \end{column}
+    \hspace{-3mm}
+    \begin{column}{0.5\textwidth}
+      \begin{itemize}
+        \item Scale \eqref{eq1} by $\ds\frac{1}{2}$, add \eqref{eq2}, and add \eqref{eq3} scaled by $\ds\frac{1}{2}$, we get for every feasible $\ds x_j$, $j= 1,\,\ldots,\,4$ $$\ds x_1 + 2 x_2 + \frac{3}{2}x_3 + x_4\leqslant\frac{5}{2}$$
+        \item The objective $$x_1 + 2 x_2 + x_3 + x_4\leqslant x_1 + 2 x_2 + \frac{3}{2}x_3 + x_4\leqslant\frac{5}{2}$$ so $\ds\frac{5}{2}$ is indeed optimal. 
+      \end{itemize}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}
+  \frametitle{The Dual of Linear Program (Cont'd)}
+  \begin{itemize}\setlength{\itemsep=0pt}
+    \item LP in standard form: 
+      \begingroup
+      \addtolength{\jot}{-2pt}
+      \begin{align*}
+        \text{maximize}  \quad& \sum_{j=1}^n c_j x_j \\
+        \text{subject to}\quad& \sum_{j=1}^n a_{1j}x_j\leqslant b_1\\
+                              & \sum_{j=1}^n a_{2j}x_j\leqslant b_2\\
+                              & \ldots \ldots \ldots\\
+                              & \sum_{j=1}^n a_{mj}x_j\leqslant b_m\\
+                              & x_j\geqslant 0, \quad j= 1,\,2,\,\ldots,\,n 
+      \end{align*}
+      \endgroup
+    \item For every choice of the ``scaling factors'' $\ds y_i\geqslant 0$, $\ds i = 1,\,2,\,\ldots,\,m$, $$y_1\sum_{j=1}^n a_{1j}x_j + y_2\sum_{j=1}^n a_{2j}x_j + \cdots + y_m\sum_{j=1}^n a_{mj}x_j \leqslant y_1 b_1 + y_2 b_2 + \cdots + y_m b_m$$ 
+    \item Rearrange the inequality as $$\ds x_1\sum_{i=1}^m a_{i1}y_i + x_2\sum_{i=1}^m a_{i2}y_i + \cdots + x_n\sum_{i=1}^m a_{in}y_i \leqslant y_1 b_1 + y_2 b_2 + \cdots + y_m b_m$$ 
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{The Dual of Linear Program (Cont'd)}
+  \begin{itemize}\setlength{\itemsep=0pt}
+    \item Choose $\ds y_i$, $\ds i = 1,\,2,\,\ldots,\,m$ such that
+      \begingroup
+      \addtolength{\jot}{-2pt}
+      \begin{align*}
+        c_1 \leqslant \sum_{i=1}^m a_{i1}y_i, \quad c_2 \leqslant \sum_{i=1}^m a_{i2}y_i, \quad \ldots, \quad c_n \leqslant \sum_{i=1}^m a_{in}y_i
+      \end{align*}
+      \endgroup
+      Then $$c_1 x_1 + c_2 x_2 + \cdots + c_n x_n \leqslant x_1\sum_{i=1}^m a_{i1}y_i + x_2\sum_{i=1}^m a_{i2}y_i + \cdots + x_n\sum_{i=1}^m a_{in}y_i \leqslant y_1 b_1 + y_2 b_2 + \cdots + y_m b_m$$
+    \item To make the upper bound tighter, we have the LP in dual form: 
+      \begingroup
+      \addtolength{\jot}{-2pt}
+      \begin{align*}
+        \text{minimize}  \quad& \sum_{i=1}^n b_i y_i \\
+        \text{subject to}\quad& \sum_{i=1}^n a_{i1}y_i\geqslant c_1\\
+                              & \sum_{i=1}^n a_{i2}y_i\geqslant c_2\\
+                              & \ldots \ldots \ldots\\
+                              & \sum_{i=1}^n a_{in}y_i\geqslant c_m\\
+                              & y_i\geqslant 0, \quad i= 1,\,2,\,\ldots,\,m 
+      \end{align*}
+      \endgroup
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{The Primal-Dual Pairs}
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      \begin{itemize}
+        \item The Primal  
+          \begin{align*}
+            \text{maximize}  \quad& c^\top x \\
+            \text{subject to}\quad& A\,x \preccurlyeq b\\
+                                  & x\succcurlyeq 0
+          \end{align*}
+        \item The Primal  
+          \begin{align*}
+            \text{minimize}  \quad& c^\top x \\
+            \text{subject to}\quad& A\,x \succcurlyeq b\\
+                                  & x\succcurlyeq 0
+          \end{align*}
+      \end{itemize}
+    \end{column}
+    \hspace{-7mm}
+    \begin{column}{0.5\textwidth}
+      \begin{itemize}
+        \item The Dual 
+          \begin{align*}
+            \text{minimize}  \quad& b^\top y \\
+            \text{subject to}\quad& A^\top\,y \succcurlyeq c\\
+                                  & y\succcurlyeq 0
+          \end{align*}
+        \item The Dual 
+          \begin{align*}
+            \text{maximize}  \quad& b^\top y \\
+            \text{subject to}\quad& A^\top\,y \preccurlyeq c\\
+                                  & y\succcurlyeq 0
+          \end{align*}
+      \end{itemize}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}
+  \begin{table}[ht]
+    \centering
+    \begin{tabular}{cc}
+      \toprule
+      Primal (max) & Dual (min) \\
+      \midrule
+      $\geqslant$ constraint & $\leqslant 0$ variable \\
+      $\leqslant$ constraint & $\geqslant 0$ variable \\
+      $=$ constraint & free variable \\
+      $\geqslant 0$ variable & $\leqslant$ constraint \\
+      $\leqslant 0$ variable & $\geqslant$ constraint \\
+      free variable & $=$ constraint \\
+      \bottomrule
+   \end{tabular}
+ \end{table}
+\end{frame}
+
+\end{document}

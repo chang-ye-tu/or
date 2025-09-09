@@ -1,0 +1,139 @@
+\documentclass[11pt]{extarticle} 
+\usepackage{unicode-math}
+\usepackage{mathrsfs}
+\usepackage{amsthm,graphicx,xcolor,natbib,enumitem,booktabs,tabularx}
+\usepackage[paperwidth=126mm, paperheight=96mm, top=5mm, bottom=5mm, right=5mm, left=5mm]{geometry}
+\pagenumbering{gobble}
+
+\usepackage[BoldFont,SlantFont]{xeCJK}  
+\xeCJKsetemboldenfactor{2}
+\setCJKmainfont{cwTeX Q Yuan Medium}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    linkcolor={red!50!black},
+    citecolor={blue!60!black},
+    urlcolor={blue!60!black}
+    %urlcolor={blue!80!black}
+}
+
+\begin{document}
+\title{\texorpdfstring{\vspace{15mm} Operations Research\\ 02. Jupyter Notebook: Markdown \& \LaTeX{}}{Operations Research\\ 02. Jupyter Notebook: Markdown \& \LaTeX{}}} 
+\author{}
+\date{}
+\maketitle
+\newpage
+
+\section*{Jupyter Notebook Setup}
+
+\begin{itemize}
+  \item Before installation: check your {\tt python} setup
+    \begin{itemize}
+      \item {\tt python} or {\tt python3}
+      \item {\tt pip} or {\tt pip3}
+    \end{itemize}
+  \item Installation: {\tt pip install notebook}
+  \item Execute in shell: {\tt jupyter notebook} or {\tt jupyter lab} (new)
+  \item Open notebooks from the command line: {\tt pip install nbopen} \\
+    Double-click integration with file manager:
+    \begin{itemize}
+      \item Linux / BSD: {\tt python3 -m nbopen.install\_xdg}
+      \item Windows: {\tt python3 -m nbopen.install\_win}
+      \item Mac: Clone the \href{https://github.com/takluyver/nbopen}{$\,${\tt nbopen}} repository \\ and run {\tt ./osx-install.sh}
+    \end{itemize}
+\end{itemize}
+
+\newpage
+
+\section*{Markdown I}
+
+\begin{itemize}
+  \item headings: use {\tt \#} followed by a blank space for notebook titles and section headings
+    \begin{itemize}
+      \item {\tt \#} for titles
+      \item {\tt \#\#} for major headings
+      \item {\tt \#\#\#} for subheadings
+      \item{\tt \#\#\#\#} for 4th level subheadings
+    \end{itemize}
+  \item emphasis: use the following to emphasize text
+    \begin{itemize}
+      \item bold text: {\tt \_\_string\_\_}$\,$ or $\,${\tt **string**}
+      \item italic text: {\tt \_string\_}$\,$ or $\,${\tt *string*}
+    \end{itemize}
+  \item mathematical symbols using (a subset of) \href{https://en.wikibooks.org/wiki/LaTeX}{\LaTeX{}}
+  \item many \href{https://www.w3.org/TR/html401/}{html elements} are valid
+\end{itemize}
+
+\newpage
+
+\section*{Markdown II}
+
+\begin{itemize}
+  \item monospace font: for commands and quoted file paths and names 
+    \begin{itemize}
+      \item surrond text with {\tt `}, like {\tt `python`}
+    \end{itemize}
+  \item bullets: {\tt -}$\,$ or $\,${\tt *} followed by one or two spaces
+    \begin{itemize}
+      \item e.g. {\tt - this is an item}
+      \item sub bullets: proper indentation w.r.t parent bullets 
+    \end{itemize}
+  \item numbered lists: {\tt 1.}$\,$ followed by a space
+    \begin{itemize}
+      \item e.g. {\tt 1.\,this is a numbered item}
+      \item sub numbered lists: proper indentation w.r.t parent lists 
+    \end{itemize}
+  \item force a line break using {\tt <br>}
+  \item quoting using {\tt >} followed by a space
+\end{itemize}
+
+\newpage
+
+\section*{Markdown III}
+
+\begin{itemize}
+  \item link 
+    \begin{itemize}
+      \item internal: put {\tt <a id='section\_id'/>} before, then \\
+        {\tt [section title](\#section\_id)}
+      \item external: {\tt \_\_[link text](http://url)\_\_}
+    \end{itemize}
+  \item colored boxes \\{\tt <div class='alert alert-block <type>'>\dots</div>} \\
+    with {\tt <type>} are the followings: 
+    \begin{itemize}
+      \item {\tt alert-info}
+      \item {\tt alert-warning}
+      \item {\tt alert-success}
+      \item {\tt alert-danger}
+    \end{itemize}
+  \item horizontal line with {\tt ***}
+\end{itemize}
+
+\section*{Markdown IV}
+
+\begin{itemize}
+  \item table example: note the alignment and \LaTeX{} formula
+    \begin{verbatim}
+ | column 1 | column 2 | column 3 |
+ |:-:|:-|-:|
+ | 1 | 20 | 305 |
+ | alpha | beta | gamma ray |
+ | $\frac{2}{3}$ | $\int_0^1 e^{-x}\,dx$ | $\pi$ |
+    \end{verbatim}
+  \item \href{https://www.w3schools.com/charsets/ref_utf_geometric.asp}{UTF-8 geometrical shapes}: {\tt \&\#<dec/hex code>;}  
+  \item images
+    \begin{itemize}
+      \item image url: {\tt ![text](URL-or-PATH-to-image)}
+      \item local file: under the same folder or be descendent
+      \item for best size, using raw html \\
+        {\tt<image src='path' alt='text' width='300'/>}
+    \end{itemize}
+\end{itemize}
+\newpage
+
+%\newpage
+%\bibliographystyle{elsarticle-harv}
+%\bibliography{note01}
+
+\end{document}

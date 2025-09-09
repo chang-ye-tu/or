@@ -1,0 +1,151 @@
+\documentclass[11pt]{extarticle} 
+\usepackage{unicode-math}
+\usepackage{mathrsfs}
+\usepackage{amsthm,graphicx,xcolor,natbib,enumitem,booktabs,tabularx}
+\usepackage[paperwidth=126mm, paperheight=96mm, top=5mm, bottom=5mm, right=5mm, left=5mm]{geometry}
+\pagenumbering{gobble}
+
+\usepackage[BoldFont,SlantFont]{xeCJK}  
+\xeCJKsetemboldenfactor{2}
+%\setCJKmainfont{cwTeX Q Kai Medium}
+%\setCJKmainfont{cwTeX Q Ming Medium}
+\setCJKmainfont{cwTeX Q Yuan Medium}
+%\usepackage[AutoFakeBold,AutoFakeSlant]{xeCJK}  
+%\setCJKmainfont[AutoFakeSlant=.1,AutoFakeBold=1]{cwTeX Q Kai Medium} 
+%\setCJKfamilyfont{kaiv}[Vertical=RotatedGlyphs]{cwTeX Q Medium}
+%\setmainfont{texgyrepagella-regular.otf}
+%\setmathfont{texgyrepagella-math.otf}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    linkcolor={red!50!black},
+    citecolor={blue!60!black},
+    urlcolor={blue!60!black}
+    %urlcolor={blue!80!black}
+}
+
+\newcommand{\ds}{\displaystyle}
+\newcommand{\ie}{\,\Longrightarrow\,}
+\newcommand{\ifff}{\,\Longleftrightarrow\,}
+\newcommand{\mi}{\mathrm{i}}
+\DeclareMathOperator*{\dom}{dom}
+\DeclareMathOperator*{\codom}{codom}
+\DeclareMathOperator*{\ran}{ran}
+\newcommand{\floor}[1]{\lfloor #1 \rfloor}
+\newcommand{\ceil}[1]{\lceil #1 \rceil}
+\newcommand{\Set}[2]{\big\{ \ #1\ \big|\ #2\ \big\}}
+\newcommand{\pdiff}[2]{\frac{\partial\hfil#1\hfil}{\partial #2}}
+
+\theoremstyle{definition}
+\newtheorem*{dfn}{Definition}
+\newtheorem*{prp}{Property}
+\newtheorem*{thm}{Theorem}
+\newtheorem*{ex}{Example}
+\newtheorem*{sol}{Solution}
+\newtheorem*{prf}{Proof}
+
+\begin{document}
+\title{\texorpdfstring{\vspace{15mm} Operations Research\\ 03. Scientific Python Refresher}{Operations Research\\ 03. Scientific Python Refresher}} 
+\author{}
+\date{}
+\maketitle
+\newpage
+
+\section*{Learning Resources}
+
+\begin{itemize}\setlength{\itemsep}{-4pt}
+  \item \href{https://www.dabeaz.com/}{David Beazley$^\star$}
+    \vspace{-2mm}
+    \begin{itemize}
+      \item \citet{beazley_ess,beazley_dis,cookbook}
+      \item Online Courses
+        \begin{itemize}
+          \item \href{https://github.com/dabeaz-course/practical-python}{Practical Python Programming}
+          \item \href{https://github.com/dabeaz-course/python-mastery}{Advanced Python Mastery}
+        \end{itemize}
+    \end{itemize}
+  \item Cheat Sheets
+    \vspace{-2mm}
+  \begin{itemize}
+    \item \href{https://www.pythoncheatsheet.org/}{Python Cheat Sheet}
+    \item \href{https://ipgp.github.io/scientific_python_cheat_sheet/}{Scientific Python Cheatsheet}
+    \item \href{https://s3.amazonaws.com/assets.datacamp.com/blog_assets/Numpy_Python_Cheat_Sheet.pdf}{``Python for Data Science'' Cheat Sheet: NumPy Basics}
+    \item \href{https://github.com/gto76/python-cheatsheet}{Comprehensive Python Cheat Sheet}
+    \item \href{https://sebastianraschka.com/blog/2014/matrix_cheatsheet_table.html}{Sebastian Raschka$^\star$: Matrix Cheatsheet}
+    \item \href{https://ehmatthes.github.io/pcc_3e/cheat_sheets/}{Eric Mattes: Cheat Sheets}
+    \item \href{https://github.com/kieranholland/best-python-cheat-sheet}{The Best Python Cheat Sheet}
+  \end{itemize}
+  \item \href{https://www.reddit.com/r/Python/comments/103i4d2/what_are_the_best_books_to_learn_python/}{A Reddit pointer} for best books on (project-based) Python
+\end{itemize}
+
+\newpage
+
+\begin{ex}
+  In each of the followings, write an oneliner of {\tt Python} to complete the task. 
+  \begin{enumerate}\setlength{\itemsep}{-4pt}
+    \item {\tt l = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h']} $\ie$ \\ {\tt ll = ['b', 'd', 'f', 'h']}
+    \item {\tt l = [1, 2, 3, 4, 5]} $\ie$ {\tt ll = [1, 4, 9, 16, 25]}
+    \item {\tt l = [2, 5, 5, -1, -1, -1]} $\ie$ {\tt ll = [2, 5, -1]}
+    \item {\tt l = [1, 2, 3], ll = ['A', 'B', 'C']} $\ie$ \\{\tt L = [(1, 'A', 1), (2, 'B', 2), (3, 'C', 3)]}
+    \item {\tt l = [(1, 2), (2, -2), (5, -3), (-20, 40)]} $\ie$ \\ {\tt ll = [(-20, 40), (1, 2), (5, -3), (2, -2)]}
+  \end{enumerate}
+\end{ex}
+ 
+\begin{sol}
+  \begin{enumerate}[label=(\alph*)]\setlength{\itemsep}{-4pt}
+    \item[]
+    \item {\tt ll = l[1::2]}
+    \item {\tt ll = [i**2 for i in l]}
+    \item {\tt ll = list(set(l))}
+    \item {\tt L = list(zip(l, ll, l))}
+    \item {\tt ll = sorted(l, key=lambda x: sum(x), reverse=True)}
+  \end{enumerate}
+\end{sol}
+
+\newpage
+
+\begin{ex} 
+  Write a {\tt Python} function {\tt mymin(l)} to return the least element of {\tt l}, e.g. {\tt mymin([2, 7, 4, 2]) = 2}, {\tt mymin([-1, 2, -5, 4, 3]) = -5}.
+\end{ex}
+
+\begin{sol} Without using the built-in {\tt min} function, \\
+  \begin{verbatim}
+    def mymin(l):
+        a = l[0]
+        for i in l[1:]:
+            if i <= a:
+                a = i
+        return a
+  \end{verbatim}
+\end{sol}
+
+\newpage
+
+\begin{ex} 
+  Write a {\tt Python} function {\tt mysqrt(a)} to compute the square root of {\tt a}, e.g. \\{\tt mysqrt(2) = 1.4142135623730951}, \\ {\tt mysqrt(3) = 1.7320508075688772}.
+\end{ex}
+
+\begin{sol}  
+  Using Newton's method:
+  \begin{itemize} 
+    \item Find the root of $f(x) = x^2 - a = 0$; update the $n$-th iteration by 
+      \begin{align*}
+        x_{n + 1} = x_n - \frac{f(x_n)}{f'(x_n)}
+      \end{align*}
+    \item
+  \begin{verbatim}
+    def mysqrt(a):
+        x = a
+        for i in range(100):
+            x -= (x ** 2 - a) / (2 * x) 
+        return x
+  \end{verbatim}
+  \end{itemize}
+\end{sol}
+
+\newpage
+\bibliographystyle{elsarticle-harv}
+\bibliography{note03}
+
+\end{document}
