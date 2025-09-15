@@ -8,6 +8,9 @@
 
 - [Bertsekas, D. P., 2009. Convex Optimization Theory. Athena Scientific, Belmont MA.](https://web.mit.edu/dimitrib/www/Convex_Theory_Entire_Book.pdf)
 - [Boyd, S., Vandenberghe, L., 2004. Convex Optimization. Cambridge University Press, Cambridge.](https://web.stanford.edu/~boyd/cvxbook/bv_cvxbook.pdf)
+- David Beasley
+  - [Practical Python Programming](https://github.com/dabeaz-course/practical-python)
+  - [Advanced Python Mastery](https://github.com/dabeaz-course/python-mastery)
 - [李宏毅 - 生成式人工智慧導論 2024](https://speech.ee.ntu.edu.tw/~hylee/genai/2024-spring.php)
 
 <!--
@@ -23,7 +26,7 @@
 - [Vanderbei, R. J., 2020. Linear Programming: Foundations and Extensions, 5th ed. Springer Nature, Cham.](https://link.springer.com/book/10.1007/978-3-030-39415-8)
 - [Kochenderfer, M. J., Wheeler, T. A., Wray, K. H., 2022. Algorithms for Decision Making. MIT Press, Cambridge, MA.](https://algorithmsbook.com/files/dm.pdf) 
 - [Kochenderfer, M. J., Wheeler, T. A., 2019. Algorithms for Optimization. MIT Press, Cambridge, MA.](https://algorithmsbook.com/optimization/files/optimization.pdf)
-- [Arkadi Nemirovski: Lecture Notes]( https://www2.isye.gatech.edu/~nemirovs/ )
+- [Arkadi Nemirovski: Lecture Notes](https://www2.isye.gatech.edu/~nemirovs/)
 - [Nesterov, Y., 2019. Lectures on Convex Optimization, 2nd ed. Springer Nature, Cham.](https://link.springer.com/book/10.1007/978-3-319-91578-4)
 - [Bertsekas, D. P., 2012. Dynamic Programming and Optimal Control (2 Volumes), 4th ed. Athena Scientific.](http://www.athenasc.com/dpbook.html)
 - [Güler O., 2010. Foundations of Optimization. Springer-Verlag, Berlin.](https://link.springer.com/book/10.1007/978-0-387-68407-9)
@@ -38,8 +41,8 @@ Ruszczyński, A., 2006. Nonlinear Optimization. Princeton University Press, Prin
 | 上課時間        | 課程進度                                       	                  |
 |-----------------|-------------------------------------------------------------------|
 | 09/09           | Orientation & Introduction; Placement Test     	                  |
-| 09/16           | Jupyter/Colab, Markdown & LaTeX; Scientific Python (NumPy, SciPy) |
-| 09/23           | Optimization Fundamentals; Unconstrained Optimization             |
+| 09/16           | Jupyter/Colab, Markdown & LaTeX; Python Refresher I               |
+| 09/23           | Python Refresher II; Scientific Python (NumPy, SciPy)             |
 | 09/30           | Convex Sets & Functions                                           |
 | 10/07           | Convex Optimization Problems; KKT Conditions                      |
 | 10/14           | CVXPY I: Introduction & Basic Modeling                            |
